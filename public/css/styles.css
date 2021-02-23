@@ -1,0 +1,247 @@
+html {
+    background-color: #f9f9f9;
+}
+
+body {
+    color: #4a4a4a;
+    font-size: .8em;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.navbar-item img {
+    max-height: 2.4rem;
+}
+
+.columns {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.column {
+    padding: .75rem .35rem 0.35rem 0.35rem;
+}
+
+.level {
+    align-items: unset !important;
+}
+
+.level > div:last-child a.button.is-small.is-fullwidth {
+    margin-bottom: 5px;
+    font-size: .60rem;
+}
+
+.borderedCol div.level > .level-left {
+    max-width: 50%;
+    margin-right: 5px;
+}
+
+
+.panel-tabs {
+    justify-content: left;
+    padding: 10px 10px 0 15px;
+}
+
+.o_web_client {
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    direction: ltr;
+    position: relative;
+    background-color: #f9f9f9;
+}
+
+.o_home_menu_background {
+    background: url('../../public/images/home-menu-bg-overlay.svg'), linear-gradient(to right bottom, #77216f, #5e2750);
+    background-size: cover;
+}
+
+.isCentered {
+    text-align: center;
+}
+
+.isCentered a.button {
+    box-shadow: -1px -1px 10px #555555;
+    font-size: 40px;
+    height: 85px;
+    width: 85px;
+    overflow: hidden;
+    color: #000000;
+}
+
+.isCentered a.button:hover, .isCentered a.button:focus {
+    color: #5e2750;
+}
+
+.o_caption {
+    margin: 4px 0;
+    display: block;
+    max-width: 100%;
+    min-height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: top;
+    color: #ffffff;
+}
+
+.o_menu_brand {
+    display: block;
+    user-select: none;
+    color: white;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 50px;
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 0px 10px;
+}
+
+.o_mobile_bars {
+    padding: 11px 5px 0 5px;
+    margin-left: 20px;
+    color: gold;
+    font-size: 25px;
+}
+
+.o_main_navbar > a:hover, .o_main_navbar > a:focus, .o_main_navbar > button:hover, .o_main_navbar > button:focus {
+    background-color: #ef2e55;
+    color: inherit;
+}
+
+.borderBtmLight {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    background-color: #ffffff;
+}
+
+.title:not(.is-spaced) + .subtitle {
+    margin-top: -1.25rem;
+}
+
+.o-aside {
+    border-left: 1px solid #dddddd;
+    padding: 0 11px 0 10px;
+    min-height: 88vh;
+    margin-top: 11px;
+}
+
+.content_padding {
+    padding: 10px 10px 10px 0px;
+}
+
+.borderedCol {
+    border: 1px solid #dddddd;
+    padding: 10px;
+    background-color: #ffffff;
+}
+
+.searchInput input, .searchInput button {
+    border-radius: 0px !important;
+    color: #363636;
+    font-size: .75rem !important;
+}
+
+.searchInput input {
+    background-color: #fff;
+    border-bottom-color: #dbdbdb;
+}
+
+.field.has-addons .control:nth-child(1) {
+    width: 96%;
+}
+
+.noTopMargin {
+    margin-top: -15px;
+}
+
+.customPagination a {
+    font-size: .75em !important;
+}
+
+.customContainer {
+    padding: 10px;
+}
+
+
+.is-accent span {
+    text-shadow: #FFEFFF 1px 1px, #FFEFFF 2px 2px, #FFEFFF 3px 3px, #FFEFFF 4px 4px, #FFEFFF 5px 5px, #FFEFFF 6px 6px, #FFEFFF 7px 7px,
+    #FFEFFF 8px 8px, #FFEFFF 9px 9px, #FFEFFF 10px 10px, #FFEFFF 11px 11px, #FFEFFF 12px 12px, #FFEFFF 13px 13px, #FFEFFF 14px 14px,
+    #FFEFFF 15px 15px, #FFEFFF 16px 16px, #FFEFFF 17px 17px, #FFEFFF 18px 18px, #FFEFFF 19px 19px, #FFEFFF 20px 20px, #FFEFFF 21px 21px,
+    #FFEFFF 22px 22px, #FFEFFF 23px 23px, #FFEFFF 24px 24px, #FFEFFF 25px 25px, #FFEFFF 26px 26px, #FFEFFF 27px 27px, #FFEFFF 28px 28px,
+    #FFEFFF 29px 29px, #FFEFFF 30px 30px, #FFEFFF 31px 31px, #FFEFFF 32px 32px, #FFEFFF 33px 33px, #FFEFFF 34px 34px, #FFEFFF 35px 35px,
+    #FFEFFF 36px 36px, #FFEFFF 37px 37px, #FFEFFF 38px 38px, #FFEFFF 39px 39px, #FFEFFF 40px 40px, #FFEFFF 41px 41px, #FFEFFF 42px 42px,
+    #FFEFFF 43px 43px, #FFEFFF 44px 44px, #FFEFFF 45px 45px, #FFEFFF 46px 46px, #FFEFFF 47px 47px, #FFEFFF 48px 48px, #FFEFFF 49px 49px,
+    #FFEFFF 50px 50px, #FFEFFF 51px 51px, #FFEFFF 52px 52px, #FFEFFF 53px 53px, #FFEFFF 54px 54px, #FFEFFF 55px 55px;
+    opacity: 0.8;
+}
+
+span.icon.is-red {
+    color: red;
+}
+
+.is-user-avatar.is-aligned-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.is-user-avatar.has-max-width {
+    max-width: 7rem;
+}
+
+.is-user-avatar img {
+    margin: 0 auto;
+    border-radius: 290486px;
+}
+
+
+.label:not(:last-child) {
+    margin-bottom: .1em;
+}
+
+.label {
+    font-size: .8rem;
+}
+
+.bgSemiGreen {
+    border: 1px solid yellowgreen;
+}
+
+.bgGreen {
+    border: 1px solid #48c774;
+    background: azure;
+}
+
+div.level-left .button.is-small {
+    font-size: .7em;
+    margin-right: .5em;
+}
+
+div.level-item a {
+    margin-right: 5px;
+}
+
+.bizBossHr {
+    border-top: 1px solid rgb(0, 209, 178);
+    margin: 5px 0;
+}
+
+.colorWhite {
+    padding: 10px 30px;
+}
+
+.colorWhite, .colorWhite strong {
+    color: #ffffff;
+}
+
+.colorWhite strong {
+    font-size: 2em;
+}
+
+.colorWhite a {
+    color: yellow;
+}
+
+.column.is-3 > table.table.is-bordered {
+    font-size: 13px;
+    margin-bottom: 0px;
+}

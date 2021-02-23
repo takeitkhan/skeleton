@@ -1,0 +1,353 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\User;
+use App\Repositories\User\PermissionInterface;
+use App\Repositories\User\UserInterface;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Validator;
+
+class UserController extends Controller
+{
+
+    /**
+     * @var UserInterface
+     */
+    private $user;
+    /**
+     * @var PermissionInterface
+     */
+    private $permission;
+
+    /**
+     * UserController constructor.
+     * @param UserInterface $user
+     * @param PermissionInterface $permission
+     */
+    public function __construct(UserInterface $user, PermissionInterface $permission)
+    {
+        $this->user = $user;
+        $this->permission = $permission;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $users = $this->user->getAll();
+        return view('users.index', ['users' => $users]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('users.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            [
+                'name' => 'required',
+                'email' => 'required',
+                'phone' => 'required',
+                'employee_no' => 'required'
+            ]
+        );
+
+        // process the login
+        if ($validator->fails()) {
+            return redirect('users.create')
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            // store
+            $attributes = [
+                'name' => $request->name,
+                'email' => $request->email,
+                'employee_no' => $request->employee_no,
+                'username' => 'u' . $request->employee_no,
+                'phone' => $request->phone,
+                'emergency_phone' => $request->emergency_phone,
+                'role' => $request->role,
+                'designation' => $request->designation,
+                'password' => bcrypt('mtsbd123'),
+            ];
+
+            try {
+                $user = $this->user->create($attributes);
+                return view('users.create')->with(['status' => 1, 'message' => 'Successfully created user']);
+            } catch (\Exception $e) {
+                //dd($e->errorInfo[2]);
+                $errormsg = $e->errorInfo[2];
+                return view('users.create')->with(['status' => 0, 'message' => $errormsg]);
+            }
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param \App\Models\User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function show(User $user)
+    {
+        return view('users.show', ['user' => $user]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param \App\Models\User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(User $user)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, User $user)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param \App\Models\User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(User $user)
+    {
+        //
+    }
+
+    public function logout(Request $request)
+    {
+//        Auth::logout();
+//        $request->session()->invalidate();
+//        $request->session()->regenerateToken();
+        Auth::logout();
+        setcookie('loggedIn', false, -1, '/');
+        setcookie('user', null, -1, '/');
+        return redirect('/login');
+    }
+
+    public function search(Request $request)
+    {
+        $default = [
+            'search_key' => $request->key ?? 'Samrat',
+            'limit' => 10,
+            'offset' => 0
+        ];
+        $users = $this->user->getDataByFilter($default);
+        return view('users.index', ['users' => $users]);
+    }
+
+
+    /** Extra Methods */
+    //Route::any('users/basic_info', [UserController::class, 'basic_info'])->name('users.basic_info');
+    //Route::any('users/contact_info', [UserController::class, 'contact_info'])->name('users.contact_info');
+    //Route::any('users/user_photos', [UserController::class, 'user_photos'])->name('users.user_photos');
+    //Route::any('users/user_permissions', [UserController::class, 'user_permissions'])->name('users.user_permissions');
+    //Route::any('users/financial_info', [UserController::class, 'financial_info'])->name('users.financial_info');
+    /**
+     * @param Request $request
+     * @param User $user
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function basic_info(Request $request, User $user, $id)
+    {
+        if (isset($request->basic_info)) {
+            $attributes = [
+                'name' => $request->name,
+                'employee_no' => $request->employee_no,
+                'phone' => $request->phone,
+                'emergency_phone' => $request->emergency_phone,
+                'email' => $request->email,
+                'role' => $request->role,
+                'designation' => $request->designation
+            ];
+
+            $userupdate = $this->user->update($id, $attributes);
+            $user = $this->user->getById($id);
+            if ($userupdate == true) {
+                return view('users.basic_info', ['user' => $user, 'id' => $id, 'message' => 'Successfully saved']);
+            }
+        } else {
+            $user = $this->user->getById($id);
+            return view('users.basic_info', ['user' => $user, 'id' => $id]);
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @param User $user
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function contact_info(Request $request, User $user, $id)
+    {
+        if (isset($request->contact_info)) {
+            //dd($request);
+            $attributes = [
+                'father' => $request->father,
+                'mother' => $request->mother,
+                'address' => $request->address,
+                'postcode' => $request->postcode,
+                'district' => $request->district,
+                'gender' => $request->gender,
+                'marital_status' => $request->marital_status,
+                'birthday' => $request->birthday,
+                'alternative_email' => $request->alternative_email,
+                'company' => $request->company,
+                'company_address' => $request->company_address,
+                'basic_salary' => $request->basic_salary,
+                'join_date' => $request->join_date,
+                'employee_status' => $request->employee_status
+            ];
+
+            $userupdate = $this->user->update($id, $attributes);
+            $user = $this->user->getById($id);
+            if ($userupdate == true) {
+                return view('users.contact_info', ['user' => $user, 'id' => $id, 'message' => 'Successfully saved']);
+            }
+        } else {
+            $user = $this->user->getById($id);
+            return view('users.contact_info', ['user' => $user, 'id' => $id]);
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @param User $user
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function user_photos(Request $request, User $user, $id)
+    {
+        if (isset($request->user_photos)) {
+
+            $request->validate([
+                'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg', //|max:2048,
+                'signature' => 'required|image|mimes:jpeg,png,jpg,gif,svg' //|max:2048,
+            ]);
+            $avatar = time() . '.' . $request->avatar->extension();
+            $signature = time() . '.' . $request->signature->extension();
+
+            $avatar_data = $request->avatar->move(public_path('images/avatar'), $avatar);
+            $signature_data = $request->signature->move(public_path('images/signature'), $avatar);
+
+            $attributes = [
+                'avatar' => 'public/images/avatar/' . $avatar,
+                'signature' => 'public/images/signature/' . $signature
+            ];
+            //dd($attributes);
+            $userupdate = $this->user->update($id, $attributes);
+            $user = $this->user->getById($id);
+            if ($userupdate == true) {
+                return back()
+                    ->with('success', 'You have successfully upload image.')
+                    ->with('image', $avatar)
+                    ->with('signature', $signature);
+            }
+        } else {
+            $user = $this->user->getById($id);
+            return view('users.user_photos', ['user' => $user, 'id' => $id]);
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @param User $user
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function user_permissions(Request $request, User $user, $id)
+    {
+        if (isset($request->user_permissions)) {
+            //dd($request->permission);
+
+            $batch_data = [];
+            foreach ($request->permission as $key => $data) {
+                if ((!empty($data['checked']) && $data['checked'] == 'on') || (!empty($data['checked']) && $data['checked'] == 'off')) {
+                    $this->permission->batchUpsert(
+                        [
+                            'user_id' => $data['user_id'],
+                            'route_id' => $data['route_id']
+                        ],
+                        [
+                            'user_id' => $data['user_id'],
+                            'route_id' => $data['route_id'],
+                            'checked' => $data['checked']
+                        ]
+                    );
+                }
+            }
+
+            $user = $this->user->getById($id);
+            if ($user == true) {
+                return back()
+                    ->with('message', 'Successfully saved')
+                    ->with('user', $user)
+                    ->with('id', $id);
+            }
+        } else {
+            $user = $this->user->getById($id);
+            return view('users.user_permissions', ['user' => $user, 'id' => $id]);
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @param User $user
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function financial_info(Request $request, User $user, $id)
+    {
+        if (isset($request->financial_info)) {
+            //dd($request);
+            $attributes = [
+                'bank_information' => $request->bank_information,
+                'mbanking_information' => $request->mbanking_information
+            ];
+
+            $userupdate = $this->user->update($id, $attributes);
+            $user = $this->user->getById($id);
+            if ($userupdate == true) {
+                return back()
+                    ->with('message', 'You have successfully upload image.')
+                    ->with('user', $user)
+                    ->with('id', $id);
+            }
+        } else {
+            $user = $this->user->getById($id);
+            return view('users.financial_info', ['user' => $user, 'id' => $id]);
+        }
+    }
+
+}
