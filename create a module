@@ -16,7 +16,7 @@ $ php artisan sam:interface Foldername/Filename and then rename
 
 add singleton entry to RespositoryServiceProvider.php under app\Providers
 
-
+ALTER TABLE `tasks` ADD `task_for` INT(11) NULL AFTER `task_assigned_to_head`;
 
 
 <div class="columns add_more"
