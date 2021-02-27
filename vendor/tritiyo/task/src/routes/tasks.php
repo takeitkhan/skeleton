@@ -38,6 +38,8 @@ Route::group(['middleware' => ['web', 'role:1,3,8']], function () {
         'taskmaterial' => TaskMaterialController::class,
     ]);
 
+    Route::post('assignedToHead/{taskId}', [TaskController::class, 'assignedToHead'])->name('tasks.assignedToHead');
+
 });
 
 Route::group(['middleware' => ['web', 'role:2']], function () {
@@ -46,3 +48,4 @@ Route::group(['middleware' => ['web', 'role:2']], function () {
         'taskproof' => TaskProofController::class,
     ]);
 });
+

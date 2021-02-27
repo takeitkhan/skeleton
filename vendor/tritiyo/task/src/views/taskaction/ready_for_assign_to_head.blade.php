@@ -11,10 +11,10 @@
 
                 @if($task->task_assigned_to_head == 'Yes')
                     <div class="statusSuccessMessage">
-                        {{ \Tritiyo\Task\Models\TaskStatus::where('task_id', $task->id)->where('code', 'task_assigned_to_head')->first()->message }}
+                        {{ \Tritiyo\Task\Models\TaskStatus::where('task_id', $task->id)->where('code', 'task_assigned_to_head')->first()->message ?? NULL }}
                     </div>
                 @else
-                    {{ Form::open(array('url' => route('tasks.update', $task->id), 'method' => 'PUT', 'value' => 'PATCH', 'id' => 'add_route', 'files' => true, 'autocomplete' => 'off')) }}
+                    {{ Form::open(array('url' => route('tasks.assignedToHead', $task->id), 'method' => 'POST', 'value' => 'PATCH', 'id' => 'add_route', 'files' => true, 'autocomplete' => 'off')) }}
                     {{ Form::hidden('task_id', $task->id ?? '') }}
 
                     @if(!empty($task))

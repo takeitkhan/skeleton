@@ -265,3 +265,24 @@ div.level-item a {
     font-size: 13px;
     margin-bottom: 0px;
 }
+
+
+.msg {
+    display: block;
+    padding: 5px 8px;
+    margin-bottom: 3px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+}
+
+.msg.is-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.msg.is-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}

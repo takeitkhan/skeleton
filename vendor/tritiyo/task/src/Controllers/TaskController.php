@@ -74,6 +74,7 @@ class TaskController extends Controller
         } else {
             if ($request->task_type == 'emergency') {
                 $dt = Carbon::now();
+
                 $task_for = $dt->toDateString();
             } else {
                 $dt = Carbon::tomorrow();
@@ -91,8 +92,20 @@ class TaskController extends Controller
                 'task_for' => $task_for ?? NULL,
             ];
 
+
             try {
                 $task = $this->task->create($attributes);
+                if (auth()->user()->isManager(auth()->user()->id)) {
+                    TaskHelper::statusUpdateOrInsert([
+                        'code' => TaskHelper::getStatusKey('task_created'),
+                        'task_id' => $task->id,
+                        'action_performed_by' => auth()->user()->id,
+                        'performed_for' => null,
+                        'requisition_id' => null,
+                        'message' => TaskHelper::getStatusMessage('task_created')
+                    ]);
+                }
+
                 return view('task::create', ['task' => $task]);
                 //return redirect(route('tasks.index'))->with(['status' => 1, 'message' => 'Successfully created']);
             } catch (\Exception $e) {
@@ -146,28 +159,10 @@ class TaskController extends Controller
      * @param \Tritiyo\Task\Models\Task $task
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, Task $task)
     {
-
-        if (auth()->user()->isManager(auth()->user()->id) && $request->task_assigned_to_head) {
-
-            $atts = Task::find($task->id);
-            $atts->task_assigned_to_head = $request->task_assigned_to_head;
-            $atts->save();
-
-
-            TaskHelper::statusUpdate([
-                'code' => TaskHelper::getStatusKey('task_assigned_to_head'),
-                'task_id' => $request->task_id,
-                'action_performed_by' => auth()->user()->id,
-                'performed_for' => null,
-                'requisition_id' => null,
-                'message' => TaskHelper::getStatusMessage('task_assigned_to_head')
-            ]);
-            return redirect()->back()->with('message', 'Saved successfully');
-
-        }
-
+        //dd($request);
         if (auth()->user()->isApprover(auth()->user()->id)) {
             TaskHelper::statusUpdateOrInsert([
                 'code' => TaskHelper::getStatusKey('task_approver_edited'),
@@ -187,18 +182,13 @@ class TaskController extends Controller
             'task_code' => $request->task_code ?? null,
             'task_name' => $request->task_name,
             'site_head' => $request->site_head,
-            'task_details' => $request->task_details,
-            'task_assigned_to_head' => $request->task_assigned_to_head,
+            'task_details' => $request->task_details
         ];
-        return redirect()->back()->with('message', 'Edited Successfully');
-        //dd($attributes);
+
         try {
             $task = $this->task->update($task->id, $attributes);
-
-            return back()
-                ->with('message', 'Successfully saved')
-                ->with('status', 1)
-                ->with('task', $task);
+            return redirect()->back()->with(['status' => 0, 'message' => 'Edited Successfully']);
+            //dd($attributes);
         } catch (\Exception $e) {
             return view('task::edit', $task->id)->with(['status' => 0, 'message' => 'Error']);
         }
@@ -232,4 +222,31 @@ class TaskController extends Controller
         dd($request->all());
     }
 
+
+    /**
+     *
+     * Extra Methods
+     *
+     */
+
+    public function assignedToHead(Request $request, $task_id)
+    {
+        //dd($task_id);
+        if (auth()->user()->isManager(auth()->user()->id) && $request->task_assigned_to_head) {
+            $atts = Task::find($task_id);
+            $atts->task_assigned_to_head = $request->task_assigned_to_head;
+            $atts->save();
+
+            TaskHelper::statusUpdate([
+                'code' => TaskHelper::getStatusKey('task_assigned_to_head'),
+                'task_id' => $request->task_id,
+                'action_performed_by' => auth()->user()->id,
+                'performed_for' => null,
+                'requisition_id' => null,
+                'message' => TaskHelper::getStatusMessage('task_assigned_to_head')
+            ]);
+            return redirect()->back()->with('message', 'Saved successfully');
+        }
+
+    }
 }

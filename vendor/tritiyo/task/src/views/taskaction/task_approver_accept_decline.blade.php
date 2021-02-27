@@ -17,19 +17,21 @@
 
 
                 @if(!empty($taskStatus) && $taskStatus->code == 'declined' && auth()->user()->id == $taskStatus->action_performed_by)
-                    <button class="button is-danger">Task Declined</button>
-                    
+                    <div class="button is-danger">Task Declined</div>
+
                 @elseif(!empty($taskStatuss)  && $taskStatuss->code == 'task_approver_edited')
                     <?php echo Tritiyo\Task\Helpers\TaskHelper::buttonInputApproveDecline('approver_approved', 'approver_declined');?>
 
                 @elseif(!empty($taskStatuss)  && $taskStatuss->code == 'approver_approved')
-                    <button class="button is-success">Task Approved</button>
+                    <div class="button is-success">Task Approved</div>
 
                 @elseif(!empty($taskStatuss)  && $taskStatuss->code == 'approver_declined')
-                <button class="button is-danger">Task Declined</button>
+                <div class="button is-danger">Task Declined</div>
 
                 @else
                     <?php echo Tritiyo\Task\Helpers\TaskHelper::buttonInputApproveDecline('approver_approved', 'approver_declined');?>
+                        <input type="hidden" name="OnBack" value="OnBack" class="button is-success"
+                               style="margin-right: 10px;"/>
                 @endif
 
                 {{ Form::close() }}

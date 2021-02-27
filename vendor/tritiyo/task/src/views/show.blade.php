@@ -51,7 +51,9 @@
         <div class="card-content">
             <div class="card-data">
                 <div class="columns" style="background: #48c774;">
+
                     <div class="column is-3">Task Type</div>
+
                     <div class="column is-1">:</div>
                     <div class="column">
                         {{ $task->task_type ?? NULL }}
@@ -121,6 +123,7 @@
                             $task_resources = DB::select('SELECT resource_id FROM `tasks_site` WHERE task_id = '. $task->id .' GROUP BY resource_id');
                             $task_vehicle = \Tritiyo\Task\Models\TaskVehicle::where('task_id', $task->id)->get();
                             $task_material = \Tritiyo\Task\Models\TaskMaterial::where('task_id', $task->id)->get();
+                            $task_statuses = \Tritiyo\Task\Models\TaskStatus::where('task_id', $task->id)->orderBy('created_at', 'desc')->get();
                         @endphp
                         @if(!empty($task_sites))
                             <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
@@ -193,7 +196,6 @@
                                 @endforeach
                             </table>
                         @endif
-
                     </div>
                 </div>
             </div>
@@ -230,6 +232,22 @@
         </header>
 
         <div class="card-content">
+            @foreach($task_statuses as $task_status)
+                @if(isset($task_status->message))
+                    @if($task_status->code == 'head_declined' || $task_status->code == 'approver_declined' || $task_status->code == 'cfo_declined' || $task_status->code == 'accountant_declined')
+                        @php
+                            $color = 'is-danger';
+                        @endphp
+                    @else
+                        @php
+                            $color = 'is-success';
+                        @endphp
+                    @endif
+                    <div class="msg {{ $color }}">
+                        {{ $task_status->message ?? NULL }}
+                    </div>
+                @endif
+            @endforeach
         </div>
     </div>
 @endsection

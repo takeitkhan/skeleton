@@ -10,7 +10,7 @@
                    class="button is-small is-success"
                    aria-haspopup="true"
                    aria-controls="dropdown-menu3">
-                    <span><i class="fas fa-database"></i> All Datas</span>
+                    <span><i class="fas fa-database"></i> {{ $spTitle ?? 'All Datas' }}</span>
                 </a>
             @endif
 

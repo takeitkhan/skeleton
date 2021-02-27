@@ -1,6 +1,9 @@
 <div class="column is-4">
     <div class="borderedCol">
         <article class="media">
+            @php
+                $task_status = \Tritiyo\Task\Models\TaskStatus::where('task_id', $task->id)->orderBy('created_at', 'desc')->first();
+            @endphp
             <div class="media-content">
                 <div class="content">
                     <p>
@@ -18,10 +21,6 @@
                             {{  $project->name }}
                         </small>
                         <br/>
-
-                    @php
-                        $task_status = \Tritiyo\Task\Models\TaskStatus::where('task_id', $task->id)->orderBy('created_at', 'desc')->first();
-                    @endphp
                     @if(isset($task_status->message))
                         @if($task_status->code == 'head_declined' || $task_status->code == 'approver_declined' || $task_status->code == 'cfo_declined' || $task_status->code == 'accountant_declined')
                             @php
@@ -31,7 +30,6 @@
                         <div class="{{ !empty($red) ? $red : 'statusSuccessMessage' }}">
                             {{ $task_status->message ?? NULL }}
                         </div>
-
                         @endif
                         </p>
                 </div>
@@ -43,15 +41,19 @@
                             <span class="icon is-small"><i class="fas fa-eye"></i></span>
                         </a>
 
-                        @if (auth()->user()->isManager(auth()->user()->id)  || auth()->user()->isApprover(auth()->user()->id) || auth()->user()->isAdmin(auth()->user()->id))
-                            <a href="{{ route('tasks.edit', $task->id) }}"
-                               class="level-item"
-                               title="View all transaction">
+
+                        @if(!empty($task_status) && $task_status->code == 'head_declined' || $task_status->code == 'approver_declined' || $task_status->code == 'cfo_declined' || $task_status->code == 'accountant_declined')
+                        @else
+                            @if (auth()->user()->isManager(auth()->user()->id)  || auth()->user()->isApprover(auth()->user()->id) || auth()->user()->isAdmin(auth()->user()->id))
+                                <a href="{{ route('tasks.edit', $task->id) }}"
+                                   class="level-item"
+                                   title="View all transaction">
                                                     <span class="icon is-info is-small"><i
                                                             class="fas fa-edit"></i></span>
-                            </a>
+                                </a>
 
-                            {{--                            {!! delete_data('tasks.destroy',  $task->id) !!}--}}
+                                {{--                            {!! delete_data('tasks.destroy',  $task->id) !!}--}}
+                            @endif
                         @endif
                     </div>
                 </nav>

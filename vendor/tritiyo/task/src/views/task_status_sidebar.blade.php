@@ -1,6 +1,3 @@
-{{--    <article class="panel is-primary">--}}
-{{--        <div class="customContainer">--}}
-
 @if(auth()->user()->isManager(auth()->user()->id) || auth()->user()->isApprover(auth()->user()->id))
     @include('task::taskaction.ready_for_assign_to_head')
 @endif
@@ -20,6 +17,7 @@
         <div class="card-data">
 
             <div class="columns" style="background: #48c774;">
+
                 <div class="column is-3">Task Type</div>
                 <div class="column is-1">:</div>
                 <div class="column">
@@ -93,6 +91,7 @@
                     @endphp
                     @if(!empty($task_sites))
                         <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+
                             <tr>
                                 <th colspan="4">Site and Resource Information</th>
                             </tr>
@@ -162,7 +161,6 @@
                             @endforeach
                         </table>
                     @endif
-
                 </div>
             </div>
         </div>
