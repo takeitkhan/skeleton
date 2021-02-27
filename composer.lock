@@ -5112,16 +5112,16 @@
         },
         {
             "name": "tritiyo/task",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/takeitkhan/task.git",
-                "reference": "7628738f95f175863e5837c495704984a0d49409"
+                "reference": "db4581c51bbd1a11a91efa851d366d405fe55c5c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/takeitkhan/task/zipball/7628738f95f175863e5837c495704984a0d49409",
-                "reference": "7628738f95f175863e5837c495704984a0d49409",
+                "url": "https://api.github.com/repos/takeitkhan/task/zipball/db4581c51bbd1a11a91efa851d366d405fe55c5c",
+                "reference": "db4581c51bbd1a11a91efa851d366d405fe55c5c",
                 "shasum": ""
             },
             "type": "library",
@@ -5148,7 +5148,7 @@
                 }
             ],
             "description": "Task manage on Task Module",
-            "time": "2021-02-26T12:24:23+00:00"
+            "time": "2021-02-27T17:00:02+00:00"
         },
         {
             "name": "tritiyo/vehicle",
@@ -7500,5 +7500,6 @@
     "platform": {
         "php": "^7.3|^8.0"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
