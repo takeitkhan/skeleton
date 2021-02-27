@@ -34,6 +34,7 @@ body {
 .borderedCol div.level > .level-left {
     max-width: 50%;
     margin-right: 5px;
+
 }
 
 
@@ -133,6 +134,25 @@ body {
     border: 1px solid #dddddd;
     padding: 10px;
     background-color: #ffffff;
+    min-height: 8rem;
+}
+
+.statusSuccessMessage {
+    background: #DCFFE1;
+    padding: 3px;
+    border: 1px solid #42B5EF;
+    color: #000000;
+    display: inline-flex;
+    border-radius: 5px;
+}
+
+.statusDangerMessage {
+    background: #FFB8B1;
+    padding: 3px;
+    border: 1px solid #5C4240;
+    color: #000000;
+    display: inline-flex;
+    border-radius: 5px;
 }
 
 .searchInput input, .searchInput button {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3a1e647b25c3cadcbbc19b5d7a9019e3",
+    "content-hash": "11fbe895d933305e0acb6d3f39bff148",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4991,6 +4991,206 @@
             "time": "2020-07-13T06:12:54+00:00"
         },
         {
+            "name": "tritiyo/material",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/takeitkhan/material.git",
+                "reference": "9ea3caa332724d54c3dbca6550faee63a3b48133"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/takeitkhan/material/zipball/9ea3caa332724d54c3dbca6550faee63a3b48133",
+                "reference": "9ea3caa332724d54c3dbca6550faee63a3b48133",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Tritiyo\\Material\\MaterialServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tritiyo\\Material\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "NoushadNipun",
+                    "email": "nipun@tritiyo.com"
+                }
+            ],
+            "description": "Material manage on Material Module",
+            "time": "2021-02-23T22:20:03+00:00"
+        },
+        {
+            "name": "tritiyo/project",
+            "version": "v1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/takeitkhan/project.git",
+                "reference": "07014a456e4abd9b1e6eedb8a0248e53d5225f6d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/takeitkhan/project/zipball/07014a456e4abd9b1e6eedb8a0248e53d5225f6d",
+                "reference": "07014a456e4abd9b1e6eedb8a0248e53d5225f6d",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Tritiyo\\Project\\ProjectServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tritiyo\\Project\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "NoushadNipun",
+                    "email": "nipun@tritiyo.com"
+                }
+            ],
+            "description": "Project manage on project module",
+            "time": "2021-02-23T13:56:59+00:00"
+        },
+        {
+            "name": "tritiyo/site",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/takeitkhan/site.git",
+                "reference": "7f3a035b420b8781d409d21028b4335f7b6dcecc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/takeitkhan/site/zipball/7f3a035b420b8781d409d21028b4335f7b6dcecc",
+                "reference": "7f3a035b420b8781d409d21028b4335f7b6dcecc",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Tritiyo\\Site\\SiteServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tritiyo\\Site\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "nipunnoushad",
+                    "email": "nipun@tritiyo.com"
+                }
+            ],
+            "description": "Site manage on Site Module",
+            "time": "2021-02-23T13:54:37+00:00"
+        },
+        {
+            "name": "tritiyo/task",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/takeitkhan/task.git",
+                "reference": "cf3640beb1ade4243d8937ead2bfd6f05092eed5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/takeitkhan/task/zipball/cf3640beb1ade4243d8937ead2bfd6f05092eed5",
+                "reference": "cf3640beb1ade4243d8937ead2bfd6f05092eed5",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Tritiyo\\Task\\TaskServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tritiyo\\Task\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "NoushadNipun",
+                    "email": "nipun@tritiyo.com"
+                }
+            ],
+            "description": "Task manage on Task Module",
+            "time": "2021-02-25T18:19:29+00:00"
+        },
+        {
+            "name": "tritiyo/vehicle",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/takeitkhan/vehicle.git",
+                "reference": "dc618ce68efbfa82b49c1953a7a06328ba1beb8d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/takeitkhan/vehicle/zipball/dc618ce68efbfa82b49c1953a7a06328ba1beb8d",
+                "reference": "dc618ce68efbfa82b49c1953a7a06328ba1beb8d",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Tritiyo\\Vehicle\\VehicleServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tritiyo\\Vehicle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "NoushadNipun",
+                    "email": "nipun@tritiyo.com"
+                }
+            ],
+            "description": "Vehicle manage on Vehicle Module",
+            "time": "2021-02-23T22:24:10+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v5.3.0",
             "source": {
@@ -7300,5 +7500,6 @@
     "platform": {
         "php": "^7.3|^8.0"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }

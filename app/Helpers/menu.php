@@ -26,7 +26,7 @@ if (!function_exists('category_sidebar_menu')) {
                 $datas = explode(',', $category[$key]['to_role']);
                 $html .= ' for ';
                 foreach ($datas as $d) {
-                    if($d > 1 && count($datas) > 1) {
+                    if ($d > 1 && count($datas) > 1) {
                         $html .= ', ';
                     }
                     $html .= \App\Models\Role::where('id', $d)->first()->name;
@@ -37,6 +37,19 @@ if (!function_exists('category_sidebar_menu')) {
             }
             $html .= '</ul>';
         }
+        return $html;
+    }
+}
+
+
+if (!function_exists('delete_data')) {
+    function delete_data($route, $id)
+    {
+        $html = \Form::open(array('url' => route($route, $id), 'method' => 'DELETE', 'style' => 'margin-block-end: 0em'));
+        $html .= '<button onclick=" return confirm(\'Are you sure?\')" type="submit" class="level-item" style="background: transparent; border: none; cursor: pointer;">
+        <span class="icon is-small is-red"><i class="fas fa-times"></i></span></button>';
+        $html .= \Form::close();
+
         return $html;
     }
 }

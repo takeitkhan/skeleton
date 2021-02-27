@@ -17,7 +17,12 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "laravelcollective/html": "^6.2",
-        "maatwebsite/excel": "^3.1"
+        "maatwebsite/excel": "^3.1",
+        "tritiyo/material": "^1.0",
+        "tritiyo/project": "^1.0",
+        "tritiyo/site": "^1.0",
+        "tritiyo/task": "^1.0",
+        "tritiyo/vehicle": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

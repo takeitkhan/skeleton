@@ -81,7 +81,9 @@ class User extends Authenticatable
     {
         return $this->where('role', 7)->where('id', $userid)->first();
     }
-	public function isApproval($userid){
+
+    public function isApprover($userid)
+    {
         return $this->where('role', 8)->where('id', $userid)->first();
     }
 
