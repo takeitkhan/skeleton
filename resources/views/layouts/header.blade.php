@@ -88,3 +88,4 @@
     </div>
 </nav>
 
+@include('layouts.notification')

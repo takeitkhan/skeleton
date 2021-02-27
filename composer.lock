@@ -5112,16 +5112,16 @@
         },
         {
             "name": "tritiyo/task",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/takeitkhan/task.git",
-                "reference": "cf3640beb1ade4243d8937ead2bfd6f05092eed5"
+                "reference": "7628738f95f175863e5837c495704984a0d49409"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/takeitkhan/task/zipball/cf3640beb1ade4243d8937ead2bfd6f05092eed5",
-                "reference": "cf3640beb1ade4243d8937ead2bfd6f05092eed5",
+                "url": "https://api.github.com/repos/takeitkhan/task/zipball/7628738f95f175863e5837c495704984a0d49409",
+                "reference": "7628738f95f175863e5837c495704984a0d49409",
                 "shasum": ""
             },
             "type": "library",
@@ -5148,7 +5148,7 @@
                 }
             ],
             "description": "Task manage on Task Module",
-            "time": "2021-02-25T18:19:29+00:00"
+            "time": "2021-02-26T12:24:23+00:00"
         },
         {
             "name": "tritiyo/vehicle",
@@ -5794,16 +5794,16 @@
         },
         {
             "name": "mockery/mockery",
-            "version": "1.4.2",
+            "version": "1.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mockery/mockery.git",
-                "reference": "20cab678faed06fac225193be281ea0fddb43b93"
+                "reference": "d1339f64479af1bee0e82a0413813fe5345a54ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mockery/mockery/zipball/20cab678faed06fac225193be281ea0fddb43b93",
-                "reference": "20cab678faed06fac225193be281ea0fddb43b93",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/d1339f64479af1bee0e82a0413813fe5345a54ea",
+                "reference": "d1339f64479af1bee0e82a0413813fe5345a54ea",
                 "shasum": ""
             },
             "require": {
@@ -5858,7 +5858,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2020-08-11T18:10:13+00:00"
+            "time": "2021-02-24T09:51:49+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -7500,6 +7500,5 @@
     "platform": {
         "php": "^7.3|^8.0"
     },
-    "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "platform-dev": []
 }
