@@ -29,9 +29,9 @@
     @foreach ($errors->all() as $error)
         <script>
             bulmaToast.toast({
-                message: '{{ Session::get('errors') }}',
-                type: 'is-info',
-                position: 'top-right',
+                message: '{{ $error }}',
+                type: 'is-warning',
+                position: 'bottom-left',
                 dismissible: true,
                 closeOnClick: true,
                 duration: 4000,
@@ -42,4 +42,8 @@
     @endforeach
 @endif
 
-
+<style>
+    .notification {
+        font-size: 18px;
+    }
+</style>

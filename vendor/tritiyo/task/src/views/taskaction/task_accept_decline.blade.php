@@ -15,12 +15,10 @@
                 {{ Form::open(array('url' => route('taskstatus.store'), 'method' => 'POST', 'value' => 'PATCH', 'id' => 'add_route', 'files' => true, 'autocomplete' => 'off')) }}
                 {{ Form::hidden('task_id', $task->id ?? '') }}
 
-
                 @if(!empty($taskStatuss) && ($taskStatuss->code == 'head_declined' && auth()->user()->id == $taskStatuss->action_performed_by))
                     <button class="button is-danger">Task Declined</button>
                 @else
-                    <?php echo Tritiyo\Task\Helpers\TaskHelper::buttonInputApproveDecline('head_accepted', 'head_declined');?>
-
+                <?php echo Tritiyo\Task\Helpers\TaskHelper::buttonInputApproveDecline('head_accepted', 'head_declined');?>
                 @endif
 
                 {{ Form::close() }}

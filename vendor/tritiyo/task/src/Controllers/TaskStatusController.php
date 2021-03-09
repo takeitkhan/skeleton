@@ -67,7 +67,7 @@ class TaskStatusController extends Controller
                 ->withInput();
         } else {
             //$taskMsgHandler = $request->task_message_handler;
-
+            
             if (!empty($request->accept[1]) && $request->accept[1] == 'Approve') {
                 $key = TaskHelper::getStatusKey($request->accept[0]);
                 $message = TaskHelper::getStatusMessage($request->accept[0]);
@@ -89,16 +89,9 @@ class TaskStatusController extends Controller
             ]);
 
             try {
-                if (!empty($request->decline[1]) && $request->decline[1] == 'Decline'){
-                    return redirect(route('tasks.index'))->with(['status' => 0, 'message' => 'Task Declined']);
-                }else if ( !empty($request->OnBack) &&  $request->OnBack == 'OnBack') {
-                    return redirect()->route('tasks.index')->with(['status' => 1, 'message' => 'Task Approved']);
-                } elseif (!empty($request->accept[1]) && $request->accept[1] == 'Approve') {
-                    return redirect()->back()->with(['status' => 1, 'message' => 'Task Approved']);
-                } else {
-                    //return redirect(route('tasks.show', $request->task_id))->with(['status' => 1, 'message' => 'Successfully created']);
-                    return redirect(route('tasks.index'))->with(['status' => 0, 'message' => 'Task Declined']);
-                }
+                //return redirect(route('tasks.show', $request->task_id))->with(['status' => 1, 'message' => 'Successfully created']);
+                return redirect()->back()->with(['status' => 1, 'message' => 'Successfully created']);
+
             } catch (\Exception $e) {
                 return view('task::create')->with(['status' => 0, 'message' => 'Error']);
             }

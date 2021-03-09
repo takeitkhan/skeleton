@@ -6,6 +6,7 @@ use Tritiyo\Task\Controllers\TaskVehicleController;
 use Tritiyo\Task\Controllers\TaskMaterialController;
 use Tritiyo\Task\Controllers\TaskProofController;
 use Tritiyo\Task\Controllers\TaskStatusController;
+use Tritiyo\Task\Controllers\TaskRequisitionBillController;
 
 Route::group(['middleware' => ['web', 'role:1,2,3,8']], function () {
     //TaskStatus
@@ -19,6 +20,7 @@ Route::group(['middleware' => ['web', 'role:1,2,3,8']], function () {
     Route::resources([
         'tasks' => TaskController::class,
     ]);
+    Route::get('tasks/anonymousproof/{id}', [TaskController::class, 'anonymousProof'])->name('tasks.anonymousproof.edit');
 });
 
 Route::group(['middleware' => ['web', 'role:1,3,8']], function () {
@@ -33,12 +35,15 @@ Route::group(['middleware' => ['web', 'role:1,3,8']], function () {
         'taskvehicle' => TaskVehicleController::class,
     ]);
 
-    //Vehicle
+    //Material
     Route::resources([
         'taskmaterial' => TaskMaterialController::class,
     ]);
 
-    Route::post('assignedToHead/{taskId}', [TaskController::class, 'assignedToHead'])->name('tasks.assignedToHead');
+    //Requisition
+    Route::resources([
+        'taskrequisitionbill' => TaskRequisitionBillController::class,
+    ]);
 
 });
 
@@ -48,4 +53,3 @@ Route::group(['middleware' => ['web', 'role:2']], function () {
         'taskproof' => TaskProofController::class,
     ]);
 });
-

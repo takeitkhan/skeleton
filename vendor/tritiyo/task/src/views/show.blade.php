@@ -116,6 +116,8 @@
                         {{ $task->task_for ?? NULL }}
                     </div>
                 </div>
+
+                asdfasdfas
                 <div class="columns">
                     <div class="column is-12">
                         @php
@@ -123,7 +125,6 @@
                             $task_resources = DB::select('SELECT resource_id FROM `tasks_site` WHERE task_id = '. $task->id .' GROUP BY resource_id');
                             $task_vehicle = \Tritiyo\Task\Models\TaskVehicle::where('task_id', $task->id)->get();
                             $task_material = \Tritiyo\Task\Models\TaskMaterial::where('task_id', $task->id)->get();
-                            $task_statuses = \Tritiyo\Task\Models\TaskStatus::where('task_id', $task->id)->orderBy('created_at', 'desc')->get();
                         @endphp
                         @if(!empty($task_sites))
                             <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
@@ -232,21 +233,17 @@
         </header>
 
         <div class="card-content">
-            @foreach($task_statuses as $task_status)
-                @if(isset($task_status->message))
-                    @if($task_status->code == 'head_declined' || $task_status->code == 'approver_declined' || $task_status->code == 'cfo_declined' || $task_status->code == 'accountant_declined')
-                        @php
-                            $color = 'is-danger';
-                        @endphp
-                    @else
-                        @php
-                            $color = 'is-success';
-                        @endphp
-                    @endif
-                    <div class="msg {{ $color }}">
-                        {{ $task_status->message ?? NULL }}
-                    </div>
-                @endif
+            @php $taskStatus = \Tritiyo\Task\Models\TaskStatus::where('task_id', $task->id)->orderBy('id', 'DESC')->get() @endphp
+            <?php //dump($taskStatus);?>
+            @foreach($taskStatus as $task_status)
+                @php
+                if($task_status->code == 'head_declined' || $task_status->code == 'approver_declined' || $task_status->code == 'cfo_declined' || $task_status->code == 'accountant_declined'){
+                        $msgClass = 'danger';
+                } else {
+                        $msgClass = 'success';
+                }
+                @endphp
+                <div class="task_status {{$msgClass}}">{{$task_status->message}}</div>
             @endforeach
         </div>
     </div>
@@ -257,6 +254,22 @@
             width: 100%;
             font-size: 15px;
             text-align: center;
+        }
+        .task_status {
+            padding: .75rem 1.25rem;
+            margin-bottom: 1rem;
+            border: 1px solid transparent;
+            border-radius: .25rem;
+        }
+        .task_status.success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+        .task_status.danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
         }
     </style>
 @endsection

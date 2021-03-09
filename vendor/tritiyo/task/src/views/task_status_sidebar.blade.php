@@ -1,3 +1,6 @@
+{{--    <article class="panel is-primary">--}}
+{{--        <div class="customContainer">--}}
+
 @if(auth()->user()->isManager(auth()->user()->id) || auth()->user()->isApprover(auth()->user()->id))
     @include('task::taskaction.ready_for_assign_to_head')
 @endif
@@ -91,7 +94,6 @@
                     @endphp
                     @if(!empty($task_sites))
                         <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-
                             <tr>
                                 <th colspan="4">Site and Resource Information</th>
                             </tr>

@@ -10,10 +10,6 @@ class TaskHelper
     public static function taskMessageHandler()
     {
         $task_statuses = array(
-            'task_created' => array(
-                'key' => 'task_created',
-                'message' => 'Task created by manager'
-            ),
             'head_accepted' => array(
                 'key' => 'head_accepted',
                 'message' => 'Task accepted by site head'
@@ -81,6 +77,10 @@ class TaskHelper
             'task_assigned_to_head' => array(
                 'key' => 'task_assigned_to_head',
                 'message' => 'Task assigned to head'
+            ),
+            'task_created' => array(
+                'key' => 'task_created',
+                'message' => 'Task created by manager'
             ),
 
         );
@@ -171,13 +171,34 @@ class TaskHelper
     }
 
 
-    public static function buttonInputApproveDecline($approve, $decline)
-    {
+    public static function buttonInputApproveDecline($approve, $decline){
 
-        $html = '<input type="hidden" name="accept[]" value="' . $approve . '" class="button is-success"/>';
-        $html .= '<input type="submit" name="accept[]" value="Approve" class="button is-success" style="margin-right: 10px;"/>';
-        $html .= '<input type="hidden" name="decline[]" value="' . $decline . '" class="button is-danger"/>';
-        $html .= '<input type="submit" onclick="return alert(\'Are you sure?\')" name="decline[]" value="Decline" class="button is-danger"/>';
+        $html = '<input type="hidden" name="accept[]" value="'.$approve.'" class="button is-success"/>';
+        $html .= '<input type="submit" name="accept[]" value="Approve" class="button is-success"/>';
+        $html .= '<input type="hidden" name="decline[]" value="'.$decline.'" class="button is-danger"/>';
+        $html .= '<input type="submit" name="decline[]" value="Decline" class="button is-danger"/>';
+        return $html;
+    }
+
+    public static function arrayExist($arr, $name, $value){
+        $collection = $arr->contains($name, $value);
+        return $collection;
+    }
+
+
+    /**
+     * Modal Helper
+     */
+    public static function modalImage($id, $link){
+        $html = '<div id="'.$id.'" class="modal">';
+        $html .= '<div class="modal-background"></div>';
+        $html .=    '<div class="modal-content">';
+        $html .= '<p class="image is-4by3">';
+        $html .=  '<img src="'.$link.'"  width="auto"/>';
+        $html .=  '</p>';
+        $html .=   '</div>';
+        $html .=   '<button class="modal-close is-large" aria-label="close"></button>';
+        $html .=   '</div>';
         return $html;
     }
 
