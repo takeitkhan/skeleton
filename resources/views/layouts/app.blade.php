@@ -16,6 +16,7 @@
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('public/css/styles.css') }}"/>
     <script type="text/javascript"> var baseurl = "<?php echo url('/'); ?>";</script>
+    @yield('headjs')
 </head>
 <body>
 @include('layouts.header')

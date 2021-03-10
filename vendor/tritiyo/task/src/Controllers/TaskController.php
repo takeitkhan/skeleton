@@ -1,6 +1,7 @@
 <?php
 
 namespace Tritiyo\Task\Controllers;
+
 use Carbon\Carbon;
 
 use Tritiyo\Task\Helpers\TaskHelper;
@@ -133,6 +134,7 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
+
         if (auth()->user()->isApprover(auth()->user()->id)) {
             $chunck = array(
                 'task' => $task,
@@ -162,7 +164,7 @@ class TaskController extends Controller
     public function update(Request $request, Task $task)
     {
         $getResource = TaskSite::select('resource_id')->where('task_id', $task->id)->get();
-        if (isset($getResource)){
+        if (isset($getResource)) {
             $checkResource = TaskHelper::arrayExist($getResource, 'resource_id', $request->site_head);
             if ($checkResource == true) {
                 return redirect()->back()->with('message', 'This person already assign as resource.please at first remove from resource')->with('status', 0);
@@ -259,7 +261,8 @@ class TaskController extends Controller
     }
 
     //Task Anonymous Proof Details
-    public function anonymousProof($id){
+    public function anonymousProof($id)
+    {
         $task = Task::find($id);
         return view('task::taskanonymousproof.create', compact('task'));
     }
