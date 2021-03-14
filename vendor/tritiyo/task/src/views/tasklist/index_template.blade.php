@@ -10,11 +10,11 @@
                 $taskEditUrl = url('taskrequisitionbill/create?task_id=' . $task->id . '&information=requisitionbillInformation');
             }
         } else {
-            $taskEditUrl = route('tasks.edit', $task->id);
+            $taskEditUrl = route('tasks.edit', $task->id).'?task_id=' . $task->id . '&information=taskinformation';
         }
         ?>
         <div style="position: absolute; right: 5px; top: 5px;">
-            @if($requisition->requisition_approved_by_accountant == 'Yes')
+            @if(!empty($requisition->requisition_approved_by_accountant) && $requisition->requisition_approved_by_accountant == 'Yes')
                 <a href="{{ route('tasks.add_bill', $task->id) }}" class="button is-small is-success">
                     <i class="fas fa-plus"></i>&nbsp;Bill
                 </a>
