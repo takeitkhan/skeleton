@@ -17,6 +17,7 @@
             'spAddUrl' => route('users.create'),
             'spAllData' => route('users.index'),
             'spSearchData' => route('users.search'),
+            'spTitle' => 'Users',
         ])
 
         @include('component.filter_set', [
@@ -52,7 +53,7 @@
                     <div class="field">
                         {{ Form::label('employee_no', 'Employee no', array('class' => 'label')) }}
                         <div class="control">
-                            {{ Form::text('employee_no', $user->employee_no, ['class' => 'input', 'placeholder' => 'Enter employee no...']) }}
+                            {{ Form::number('employee_no', $user->employee_no, ['class' => 'input', 'required' => true, 'placeholder' => 'Enter employee no...']) }}
                         </div>
                     </div>
                 </div>
@@ -62,7 +63,7 @@
                     <div class="field">
                         {{ Form::label('phone', 'Mobile', array('class' => 'label')) }}
                         <div class="control">
-                            {{ Form::text('phone', $user->phone, ['required', 'class' => 'input', 'placeholder' => 'Enter phone no...']) }}
+                            {{ Form::number('phone', $user->phone, ['required', 'class' => 'input', 'placeholder' => 'Enter phone no...', 'maxlength' => 11, 'minlength' => 11]) }}
                         </div>
                     </div>
                 </div>
@@ -70,7 +71,7 @@
                     <div class="field">
                         {{ Form::label('emergency_phone', 'Emergency mobile', array('class' => 'label')) }}
                         <div class="control">
-                            {{ Form::text('emergency_phone', $user->emergency_phone, ['class' => 'input', 'placeholder' => 'Enter phone no...']) }}
+                            {{ Form::number('emergency_phone', $user->emergency_phone, ['class' => 'input', 'required' => true, 'placeholder' => 'Enter phone no...', 'maxlength' => 11, 'minlength' => 11]) }}
                         </div>
                     </div>
                 </div>

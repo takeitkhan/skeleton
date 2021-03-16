@@ -49,7 +49,37 @@
             </div>
         </div>
 
+        <?php
+        $rm = new \Tritiyo\Task\Helpers\SiteHeadTotal('requisition_edited_by_accountant', 1);
+        ?>
+
         <div class="navbar-end">
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">Your Transaction Summary</a>
+                <div class="navbar-dropdown has-text-black">
+                    <div class="transaction_summary">
+                        <table class="table is-bordered">
+                            <tr>
+                                <td>Total Approved Requisition</td>
+                                <td>
+                                    @php
+                                        echo $rm->getTotal();
+                                        echo '<br/>';
+                                    @endphp
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Total Approved Bill</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Fraction</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
             <div class="navbar-item has-dropdown is-hoverable">
                 <?php $current_user = auth()->user(); //dump($current_user)?>
                 <a class="navbar-link">
@@ -59,7 +89,6 @@
                     Welcome, <strong style="color: yellow"> &nbsp;{{ @$current_user->name }} &nbsp;</strong>
                     as {{ \App\Models\Role::where('id', $current_user->role)->first()->name }}
                 </a>
-
                 <div class="navbar-dropdown is-right">
                     @if(auth()->user()->isAdmin(auth()->user()->id) || auth()->user()->isHR(auth()->user()->id))
                         <a class="navbar-item" href="{{ route('settings.global', 1) }}">
@@ -89,3 +118,9 @@
 </nav>
 
 @include('layouts.notification')
+
+<style type="text/css">
+    .transaction_summary {
+        padding: 0 10px;
+    }
+</style>

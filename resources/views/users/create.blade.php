@@ -16,6 +16,7 @@
             'spAddUrl' => route('users.create'),
             'spAllData' => route('users.index'),
             'spSearchData' => route('users.search'),
+            'spTitle' => 'Users',
         ])
 
         @include('component.filter_set', [
@@ -47,7 +48,7 @@
                     <div class="field">
                         {{ Form::label('employee_no', 'Employee no', array('class' => 'label')) }}
                         <div class="control">
-                            {{ Form::text('employee_no', NULL, ['class' => 'input', 'placeholder' => 'Enter employee no...']) }}
+                            {{ Form::number('employee_no', NULL, ['class' => 'input', 'required' => true, 'placeholder' => 'Enter employee no...']) }}
                         </div>
                     </div>
                 </div>
@@ -57,7 +58,7 @@
                     <div class="field">
                         {{ Form::label('phone', 'Mobile', array('class' => 'label')) }}
                         <div class="control">
-                            {{ Form::text('phone', NULL, ['required', 'class' => 'input', 'placeholder' => 'Enter phone no...']) }}
+                            {{ Form::number('phone', NULL, ['required', 'class' => 'input', 'placeholder' => 'Enter phone no...', 'maxlength' => 11, 'minlength' => 11]) }}
                         </div>
                     </div>
                 </div>
@@ -65,7 +66,7 @@
                     <div class="field">
                         {{ Form::label('emergency_phone', 'Emergency mobile', array('class' => 'label')) }}
                         <div class="control">
-                            {{ Form::text('emergency_phone', NULL, ['class' => 'input', 'placeholder' => 'Enter phone no...']) }}
+                            {{ Form::number('emergency_phone', NULL, ['class' => 'input', 'placeholder' => 'Enter phone no...', 'maxlength' => 11, 'minlength' => 11]) }}
                         </div>
                     </div>
                 </div>

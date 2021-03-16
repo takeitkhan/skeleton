@@ -17,6 +17,7 @@
             'spAddUrl' => route('users.create'),
             'spAllData' => route('users.index'),
             'spSearchData' => route('users.search'),
+            'spTitle' => 'Users',
         ])
 
         @include('component.filter_set', [

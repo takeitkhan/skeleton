@@ -16,6 +16,8 @@
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('public/css/styles.css') }}"/>
     <script type="text/javascript"> var baseurl = "<?php echo url('/'); ?>";</script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
     @yield('headjs')
 </head>
 <body>
@@ -42,6 +44,7 @@
     @endif
 </div>
 @include('layouts.footer')
+
 @yield('cusjs')
 </body>
 </html>
