@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function () {
+    return redirect(route('login'));
+});
+
 Route::get('dashboard', function () {
     return view('dashboard');
 });
@@ -21,10 +25,8 @@ Route::get('oops', function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-
     include_once('modules/users.php');
     include_once('modules/routelists.php');
     include_once('modules/designations.php');
     include_once('modules/settings.php');
-
 });

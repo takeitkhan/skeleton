@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/styles.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/styles.css').'?'.rand(0,999) }}"/>
     <script type="text/javascript"> var baseurl = "<?php echo url('/'); ?>";</script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 

@@ -205,34 +205,42 @@
             </div>
         </div>
     </div>
+    <br/>
+    <div class="card tile is-child">
+        <header class="card-header">
+            <p class="card-header-title">
+                <span class="icon"><i class="mdi mdi-account default"></i></span>
+                Reading folder from module
+            </p>
+        </header>
+    </div>
 @endsection
 
-{{--@section('column_right')--}}
-
-{{--    <div class="box">--}}
-{{--        <h1 class="title is-5">Important Note</h1>--}}
-{{--        <p>--}}
-{{--            The default password is stored in the database when the admin authority creates the user.--}}
-{{--            <br/>--}}
-{{--            Default password: <strong>bizradix@123</strong>--}}
-{{--        </p>--}}
-{{--        <br/>--}}
-{{--        <p>--}}
-{{--            After you provide the basic information, you create a list of users, now you will find the created user and--}}
-{{--            update the information for your user.--}}
-{{--        </p>--}}
-{{--    </div>--}}
-{{--    <div class="box">--}}
-{{--        <h1 class="title is-5"> গুরুত্বপুর্ণ তথ্য </h1>--}}
-{{--        <p>--}}
-{{--            এডমিন কর্তৃক প্রতিটি ইউজার তৈরির সময় ডিফল্ট পাসওয়ার্ড ডাটাবেজে জমা হয় ।--}}
-{{--            <br/>--}}
-{{--            ডিফল্ট পাসওয়ার্ড: <strong>bizradix@123</strong>--}}
-{{--        </p>--}}
-{{--        <br/>--}}
-{{--        <p>--}}
-{{--            বেসিক তথ্য দেয়ার পর আপনি ইউজার্স লিস্টে গেলে এখন তৈরী করা ইউজারকে পাবেন এবং তখন আপনি ইউজারের জন্য বাকি তথ্য--}}
-{{--            আপডেট করতে পারবেন। ইউজার তৈরির কাজকে সহজ করতে আমরা শুরুতে একজন ইউজারের জন্য যাবতীয় তথ্য ডাটাবেজে পাঠাই না।--}}
-{{--        </p>--}}
-{{--    </div>--}}
-{{--@endsection--}}
+@section('column_right')
+    {{--    <div class="box">--}}
+    {{--        <h1 class="title is-5">Important Note</h1>--}}
+    {{--        <p>--}}
+    {{--            The default password is stored in the database when the admin authority creates the user.--}}
+    {{--            <br/>--}}
+    {{--            Default password: <strong>bizradix@123</strong>--}}
+    {{--        </p>--}}
+    {{--        <br/>--}}
+    {{--        <p>--}}
+    {{--            After you provide the basic information, you create a list of users, now you will find the created user and--}}
+    {{--            update the information for your user.--}}
+    {{--        </p>--}}
+    {{--    </div>--}}
+    {{--    <div class="box">--}}
+    {{--        <h1 class="title is-5"> গুরুত্বপুর্ণ তথ্য </h1>--}}
+    {{--        <p>--}}
+    {{--            এডমিন কর্তৃক প্রতিটি ইউজার তৈরির সময় ডিফল্ট পাসওয়ার্ড ডাটাবেজে জমা হয় ।--}}
+    {{--            <br/>--}}
+    {{--            ডিফল্ট পাসওয়ার্ড: <strong>bizradix@123</strong>--}}
+    {{--        </p>--}}
+    {{--        <br/>--}}
+    {{--        <p>--}}
+    {{--            বেসিক তথ্য দেয়ার পর আপনি ইউজার্স লিস্টে গেলে এখন তৈরী করা ইউজারকে পাবেন এবং তখন আপনি ইউজারের জন্য বাকি তথ্য--}}
+    {{--            আপডেট করতে পারবেন। ইউজার তৈরির কাজকে সহজ করতে আমরা শুরুতে একজন ইউজারের জন্য যাবতীয় তথ্য ডাটাবেজে পাঠাই না।--}}
+    {{--        </p>--}}
+    {{--    </div>--}}
+@endsection

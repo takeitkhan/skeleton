@@ -1,13 +1,13 @@
 @if(!empty($spShowButtonSet) && $spShowButtonSet == true)
     <div class="level">
         <div class="level-item is-4">
-            <a href="{{ $spAddUrl ?? NULL }}" class="button is-small is-success" aria-haspopup="true"
+            <a href="{{ $spAddUrl ?? NULL }}" class="button is-small is-info-light is-rounded" aria-haspopup="true"
                aria-controls="dropdown-menu">
                 <span><i class="fas fa-plus"></i> Add</span>
             </a>
             @if(!empty($spAllData))
                 <a href="{{ $spAllData  ?? NULL }}?route_id={{ Request::get('route_id') }}"
-                   class="button is-small is-success"
+                   class="button is-small is-info-light is-rounded"
                    aria-haspopup="true"
                    aria-controls="dropdown-menu3">
                     <span><i class="fas fa-database"></i> {{ $spTitle ?? 'All Datas' }}</span>
@@ -17,7 +17,7 @@
             @if(!empty($spExportCSV))
                 <div class="dropdown">
                     <div class="dropdown-trigger">
-                        <button class="button is-small is-success" aria-haspopup="true" aria-controls="dropdown-menu3">
+                        <button class="button is-small is-info-light is-rounded" aria-haspopup="true" aria-controls="dropdown-menu3">
                             <span><i class="fas fa-tasks"></i> Action</span>
                         </button>
                     </div>

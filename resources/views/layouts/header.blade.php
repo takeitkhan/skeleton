@@ -1,10 +1,10 @@
-<nav class="navbar o_main_navbar is-danger is-fixed-top" role="navigation" aria-label="dropdown navigation">
+<nav class="navbar o_main_navbar is-navbar-bg is-link is-fixed-top" role="navigation" aria-label="dropdown navigation">
     <div class="navbar-brand">
         <a href="{{ url('dashboard') }}" class="navbar-item">
             <i class="fas fa-home"></i>
         </a>
         <a class="navbar-item" class="o_menu_brand" href="javascript:void(0)">
-            <img src="{{ asset('public/images/bizboss.png') }}"/>
+            <img src="{{ asset('public/images/mtsbd.png') }}"/>
         </a>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
@@ -23,7 +23,7 @@
             ?>
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link" href="javascript:void(0)">
-                    <i class="fas fa-bars"></i>&nbsp; Get Reports
+                    <i class="fas fa-bars"></i>&nbsp; Quick links
                 </a>
 
                 <div class="navbar-dropdown">
@@ -124,3 +124,6 @@
         padding: 0 10px;
     }
 </style>
+
+
+
