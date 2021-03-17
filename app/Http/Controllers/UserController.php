@@ -30,6 +30,7 @@ class UserController extends Controller
     {
         $this->user = $user;
         $this->permission = $permission;
+        $this->middleware('auth');
     }
 
     /**
@@ -350,4 +351,14 @@ class UserController extends Controller
         }
     }
 
+    public function change_password(Request $request, $id)
+    {
+        $user = $this->user->getById($id);
+        return view('auth.passwords.reset', ['user' => $user, 'id' => $id]);
+    }
+
+    public function update_password()
+    {
+
+    }
 }

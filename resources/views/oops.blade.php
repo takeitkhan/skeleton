@@ -16,7 +16,7 @@
 
                         <br/>
                         <br/>
-                        <strong>You are not access to requested page</strong>
+                        <strong>You don't have permission to access this page</strong>
                     </div>
                 </div>
                 <div class="columns is-multiline">

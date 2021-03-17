@@ -106,7 +106,10 @@
                         <hr class="navbar-divider">
                     @endif
                     <div class="navbar-item">
-                        <i class="fas fa-key"></i>&nbsp;<a href="#">Change Password</a>
+                        <i class="fas fa-key"></i>&nbsp;
+                        <a href="{{ route('users.change-password', auth()->user()->id) }}">
+                            Change Password
+                        </a>
                     </div>
                     <div class="navbar-item">
                         <i class="fas fa-sign-out-alt"></i>&nbsp;<a href="{{ url('logout') }}">Logout</a>
