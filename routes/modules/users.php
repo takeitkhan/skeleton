@@ -21,4 +21,5 @@ Route::group(['middleware' => 'role:1,7'], function () {
 });
 
 
-Route::any('users/change-password/{id}', [UserController::class, 'change_password'])->name('users.change-password');
+Route::any('users/change_password/{id}', [UserController::class, 'change_password'])->name('users.change_password');
+Route::any('users/update_password/{id}', [UserController::class, 'update_password'])->name('users.update_password');

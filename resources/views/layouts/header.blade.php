@@ -107,7 +107,7 @@
                     @endif
                     <div class="navbar-item">
                         <i class="fas fa-key"></i>&nbsp;
-                        <a href="{{ route('users.change-password', auth()->user()->id) }}">
+                        <a href="{{ route('users.change_password', auth()->user()->id) }}">
                             Change Password
                         </a>
                     </div>

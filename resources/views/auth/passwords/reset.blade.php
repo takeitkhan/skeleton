@@ -39,7 +39,7 @@
 
                     {{--                            <input type="hidden" name="token" value="{{ $token }}">--}}
 
-                    {{ Form::open(array('url' => route('user-password.update'), 'method' => 'PUT', 'value' => 'PATCH', 'id' => 'add_user', 'files' => true, 'autocomplete' => 'off')) }}
+                    {{ Form::open(array('url' => route('users.update_password', auth()->user()->id), 'method' => 'PUT', 'value' => 'PATCH', 'id' => 'add_user', 'files' => true, 'autocomplete' => 'off')) }}
 
                     <div class="columns">
                         <div class="column">
@@ -60,6 +60,24 @@
                             </div>
                         </div>
                     </div>
+                    <!-- <div class="columns">
+                        <div class="column">
+                            <div class="field">
+                                {{ Form::label('current_password', 'Current Password', array('class' => 'label')) }}
+                                <div class="control">
+                                    <input id="current_password" type="password"
+                                           class="input @error('password') is-invalid @enderror" name="password"
+                                           required>
+
+                                    @error('current_password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
                     <div class="columns">
                         <div class="column">
                             <div class="field">

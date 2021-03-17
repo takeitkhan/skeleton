@@ -357,8 +357,41 @@ class UserController extends Controller
         return view('auth.passwords.reset', ['user' => $user, 'id' => $id]);
     }
 
-    public function update_password()
+    public function update_password(Request $request, $id)
     {
+        //dd($request);
+        if(isset($id)) {
 
+            $validator = Validator::make($request->all(),
+                [
+                    'password' => 'required',
+                    'password_confirmation' => 'required'
+                ]
+            );
+
+        // process the login
+        if ($validator->fails()) {
+            return redirect('users.update_password', auth()->user()->id)
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            if($request->password == $request->password_confirmation) {
+                $attributes = [
+                    'password' => bcrypt($request->password)
+                ];
+
+                //$user = $this->user->getById();
+                $userupdate = $this->user->update(auth()->user()->id, $attributes);
+                if($userupdate == true) {
+                    return redirect('dashboard')->with('message', 'Password has been changed successfully');
+                }
+            } else {
+                return redirect('users.update_password', auth()->user()->id)
+                ->withErrors('Password did not match with confirm password')
+                ->withInput();
+            }
+        }        
+        }
     }
+
 }
