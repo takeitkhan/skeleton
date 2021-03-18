@@ -386,6 +386,7 @@ div.level-item a {
 .navbar.is-navbar-bg {
     background: linear-gradient(to left bottom, #222b3ad6, #2c53799e);
     color: #fff;
+    backdrop-filter: blur(5px);
 }
 table tr {
     line-height: 1.3em;
@@ -504,6 +505,10 @@ th.th-bg {
 }
 .is-lightgreen {
     background-color: #20B2AA;
+    border-color: transparent;
+}
+.is-purple {
+    background-color: #9370DB;
     border-color: transparent;
 }
 
