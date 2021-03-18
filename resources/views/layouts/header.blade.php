@@ -3,9 +3,9 @@
         <a href="{{ url('dashboard') }}" class="navbar-item">
             <i class="fas fa-home"></i>
         </a>
-        <a class="navbar-item" class="o_menu_brand" href="javascript:void(0)">
+        <span class="navbar-item" class="o_menu_brand" href="javascript:void(0)">
             <img src="{{ asset('public/images/mtsbd.png') }}"/>
-        </a>
+        </span>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
            data-target="navbarExampleTransparentExample">
