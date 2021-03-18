@@ -15,11 +15,11 @@
         </a>
     </div>
     <div id="navbarExampleTransparentExample" class="navbar-menu">
+        
         <div class="navbar-start">
-            <?php
-            $routelist = \App\Models\Routelist::where('show_menu', '=', 1)
-                ->where('is_active', '=', 1)
-                ->get();
+             @yield('header_title_set')
+             <?php
+            $routelist = \App\Models\Routelist::where('show_menu', '=', 1)->where('is_active', '=', 1)->get();
             ?>
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link" href="javascript:void(0)">
@@ -39,7 +39,7 @@
                                     <?php $link = route($menu->route_url) . '?route_id=' . $menu->id; ?>
                                 @endif
                                 <a href="{{ $link ?? NULL }}"
-                                   class="navbar-item">
+                                class="navbar-item">
                                     <i class="{{ $menu->font_awesome ?? NULL }}"></i>&nbsp; {{ $menu->route_name }}
                                 </a>
                             @endif
@@ -48,14 +48,18 @@
                 </div>
             </div>
         </div>
+        
+
+        @yield('header_button_set')
 
         <?php
         $rm = new \Tritiyo\Task\Helpers\SiteHeadTotal('requisition_edited_by_accountant', 1);
         ?>
-
+        
         <div class="navbar-end">
+            
             <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">Your Transaction Summary</a>
+                <a class="navbar-link">Transaction Summary</a>
                 <div class="navbar-dropdown has-text-black">
                     <div class="transaction_summary">
                         <table class="table is-bordered">

@@ -4,6 +4,44 @@
 @section('sub_title', 'all parent menu here')
 
 @section('dashboard')
+
+    <div class="dashboard_bg">
+
+    </div>
+    <style>
+        div.dashboard_bg {
+            position: relative;
+            z-index: 1;
+        }
+
+        div.dashboard_bg::after {
+            content: "";
+            background-image: url('{{asset('/public/images/MTS-Logo.png')}}');
+            background-size: 80% 111%;
+            background-color: #0000;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position-x: center;
+            background-position-y: bottom;
+            opacity: 0.2;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 100vh;
+            width: 100vw;
+        }
+    .section {
+        padding: 3rem 1.5rem;
+        z-index: 10;
+        position: relative;
+        position: relative;
+        z-index: 10;
+    }
+    </style>
+
+
     <section class="section">
         <div class="columns">
             <div class="column is-2"></div>

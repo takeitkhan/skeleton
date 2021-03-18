@@ -53,14 +53,14 @@
 @section('column_left')
     <div class="columns is-multiline">
         @foreach($users as $user)
-            <div class="column is-one-quarter">
-                <article class="media message {{ enrollStatus($user->employee_status) }}">
+            <div class="column is-3">
+                <article class="borderedCol media message {{ enrollStatus($user->employee_status) }}">
                     <div class="media-content">
                         <div class="content">
                             <div>
                                 <strong>
                                     <a href="{{ route('users.show', $user->id) }}"
-                                       title="View user">
+                                    title="View user">
                                         {{ $user->name }}
                                     </a>
                                 </strong>
@@ -87,19 +87,20 @@
                         <nav class="level is-mobile">
                             <div class="level-left">
                                 <a href="{{ route('users.show', $user->id) }}"
-                                   class="level-item"
-                                   title="View user data">
+                                class="level-item"
+                                title="View user data">
                                     <span class="icon is-small"><i class="fas fa-eye"></i></span>
                                 </a>
                                 <a href="{{ route('users.basic_info', $user->id) }}"
-                                   class="level-item"
-                                   title="View all transaction">
+                                class="level-item"
+                                title="View all transaction">
                                     <span class="icon is-info is-small"><i class="fas fa-edit"></i></span>
                                 </a>
-{{--                                <a class="level-item" title="Delete user" href="javascript:void(0)"--}}
-{{--                                   onclick="confirm('Are you sure?')">--}}
-{{--                                    <span class="icon is-small is-red"><i class="fas fa-times"></i></span>--}}
-{{--                                </a>--}}
+                                <!--
+                                <a class="level-item" title="Delete user" href="javascript:void(0)" onclick="confirm('Are you sure?')">
+                                    <span class="icon is-small is-red"><i class="fas fa-times"></i></span>
+                                </a>
+                                -->
                             </div>
                         </nav>
                     </div>
@@ -107,10 +108,10 @@
                         <p class="image is-64x64">
                             @if(!empty($user->avatar))
                                 <img class="is-rounded avatar"
-                                     src="{{ url($user->avatar) }}" alt="{{ $user->name }}">
+                                    src="{{ url($user->avatar) }}" alt="{{ $user->name }}">
                             @else
                                 <img class="is-rounded avatar"
-                                     src="https://bulma.io/images/placeholders/128x128.png">
+                                    src="https://bulma.io/images/placeholders/128x128.png">
                             @endif
                         </p>
                     </figure>

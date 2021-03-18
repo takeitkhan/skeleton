@@ -182,26 +182,45 @@ class UserController extends Controller
      */
     public function basic_info(Request $request, User $user, $id)
     {
-        if (isset($request->basic_info)) {
-            $attributes = [
-                'name' => $request->name,
-                'employee_no' => $request->employee_no,
-                'phone' => $request->phone,
-                'emergency_phone' => $request->emergency_phone,
-                'email' => $request->email,
-                'role' => $request->role,
-                'designation' => $request->designation
-            ];
 
-            $userupdate = $this->user->update($id, $attributes);
-            $user = $this->user->getById($id);
-            if ($userupdate == true) {
-                return view('users.basic_info', ['user' => $user, 'id' => $id, 'message' => 'Successfully saved']);
+        if (isset($request->basic_info)) {
+            $validator = Validator::make($request->all(),
+                [
+                    'name' => 'required',
+                    'email' => 'required',
+                    'phone' => 'required|min:11|max:11',
+                    'employee_no' => 'required',
+                    'emergency_phone' => 'min:11|max:11'
+                ]
+            );
+
+            // process the login
+            if ($validator->fails()) {
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
+            } else {
+                $attributes = [
+                    'name' => $request->name,
+                    'employee_no' => $request->employee_no,
+                    'phone' => $request->phone,
+                    'emergency_phone' => $request->emergency_phone,
+                    'email' => $request->email,
+                    'role' => $request->role,
+                    'designation' => $request->designation
+                ];
+
+                $userupdate = $this->user->update($id, $attributes);
+                $user = $this->user->getById($id);
+                if ($userupdate == true) {
+                    return view('users.basic_info', ['user' => $user, 'id' => $id, 'message' => 'Successfully saved']);
+                }
             }
         } else {
             $user = $this->user->getById($id);
             return view('users.basic_info', ['user' => $user, 'id' => $id]);
         }
+        
     }
 
     /**

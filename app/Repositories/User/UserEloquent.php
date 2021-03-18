@@ -25,7 +25,7 @@ class UserEloquent implements UserInterface
         return $this->model
             ->orderBy('id', 'desc')
             //->take(100)
-            ->paginate(16);
+            ->paginate(24);
     }
 
     /**

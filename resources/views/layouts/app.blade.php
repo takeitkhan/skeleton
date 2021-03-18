@@ -44,6 +44,17 @@
     @endif
 </div>
 @include('layouts.footer')
+<div style="padding: 5px 25px; right: 0px; bottom: 0px; position: fixed; margin-top: 10px; z-index: -1; font-size: 12px; color: #f1f1f1;">
+<span style="color: #ffffff;">Software developed</span> by <a class="onhover" href="http://www.tritiyo.com" target="_blank">Tritiyo Limited</a>
+</div>
+<style type="text/css">
+    a.onhover {
+        color: yellow;
+    }
+    a.onhover:hover {
+        color: #F1F1F1;
+    }
+</style>
 
 @yield('cusjs')
 </body>

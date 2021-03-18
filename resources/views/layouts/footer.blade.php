@@ -1,3 +1,5 @@
+<script src="{{asset('/public/js/main.js')}}">
+
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', () => {
 
@@ -25,4 +27,5 @@
 
     });
 </script>
+
 
