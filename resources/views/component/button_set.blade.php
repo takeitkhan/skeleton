@@ -54,12 +54,12 @@ return $content;
     </style>
      
     <div class="is-hidden-touch is-flex margin_left_hidden_mobile">
-            <?php echo buttonSet($spShowButtonSet ?? null, $spAddUrl ?? null, $spAllData ?? null, $spTitle ?? null, $spExportCSV ?? null);?>
+        <?php //echo buttonSet($spShowButtonSet ?? null, $spAddUrl ?? null, $spAllData ?? null, $spTitle ?? null, $spExportCSV ?? null);?>
     </div>
 
 @endsection 
 
-<div class="is-hidden-desktop">
+<div class="xis-hidden-desktop">
     <?php echo buttonSet($spShowButtonSet ?? null, $spAddUrl ?? null, $spAllData ?? null, $spTitle ?? null, $spExportCSV ?? null);?>
 </div>
 
