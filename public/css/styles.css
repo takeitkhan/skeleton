@@ -8,7 +8,7 @@ body {
     /*color: #f9f9f969;*/
     font-size: 14px;
     font-weight: 400;
-    line-height: 1.7;
+    line-height: 1.5;
 }
 body.has-navbar-fixed-top, html.has-navbar-fixed-top {
     padding-top: 3.25rem;
@@ -23,11 +23,12 @@ body.has-navbar-fixed-top, html.has-navbar-fixed-top {
 }
 
 .column {
-    padding: .75rem .35rem 0.35rem 0.35rem;
+    padding: .40rem .35rem 0.35rem 0.35rem;
 }
 
-.level {
+nav.level {
     align-items: unset !important;
+    padding-top: 10px;
 }
 
 .level > div:last-child a.button.is-small.is-fullwidth {
@@ -189,37 +190,50 @@ body.has-navbar-fixed-top, html.has-navbar-fixed-top {
     border-color: #f5c6cb;
 }
 
-.searchInput input, .searchInput button {
-    border-radius: 50px !important;
-    color: #363636;
-    font-size: 12px !important;   
-    border-color: transparent;
-    color: #1b1919;
-}
-.searchInput input:focus {
-    border-color: #66afe9;
-    outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%);
-    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%);
-}
-.has-search-btn{
-    position: absolute;
-    z-index: 2;
-    display: block;
-    width: 21.375rem;
-    height: 2.375rem;
-    line-height: 32px;
-    text-align: center;
-    pointer-events: none;
-    color: #1514142e;
-}
+/**
 
-.searchInput input {
-    background-color: #fff;
-    padding: 15px;
-    border-bottom-color: #dbdbdb;
-}
+**/
 
+/*Resize the wrap to see the search bar change!*/
+.x .level-right {
+    margin-right: 10px;
+}
+.sb-example-1 {
+    background: white;
+    border-radius: 50px;
+}
+.sb-example-1 .search {
+    width: 100%;
+    position: relative;
+    display: flex;    
+  }
+  
+  .sb-example-1 .searchTerm {
+        width: 100%;
+        border: unset;
+        border-right: none;        
+        border-radius: 50px;
+        outline: none;
+        color: #9DBFAF;
+        padding: 0 0 0 15px;
+    }
+  
+  .sb-example-1 .searchTerm:focus{
+    color: #00B4CC;
+  }
+  
+  .sb-example-1 .searchButton {
+        height: 30px;
+        border: unset;
+        background: unset;
+        text-align: center;
+        color: #000;        
+        cursor: pointer;
+        padding: 0 10px 0 10px;
+    }
+/**
+
+**/
 .field.has-addons .control:nth-child(1) {
     width: 96%;
 }
