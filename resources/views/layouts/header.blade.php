@@ -1,11 +1,12 @@
 <nav class="navbar o_main_navbar is-navbar-bg is-link is-fixed-top" role="navigation" aria-label="dropdown navigation">
     <div class="navbar-brand">
         <a href="{{ url('dashboard') }}" class="navbar-item">
-            <i class="fas fa-home"></i>
+            <span class="navbar-item" class="o_menu_brand" href="javascript:void(0)">
+                <img src="{{ asset('public/images/mtsbd.png') }}"/>
+            </span>
+            {{-- <i class="fas fa-home"></i> --}}
         </a>
-        <span class="navbar-item" class="o_menu_brand" href="javascript:void(0)">
-            <img src="{{ asset('public/images/mtsbd.png') }}"/>
-        </span>
+        
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
            data-target="navbarExampleTransparentExample">
@@ -17,10 +18,8 @@
     <div id="navbarExampleTransparentExample" class="navbar-menu">
         
         <div class="navbar-start">
-             @yield('header_title_set')
-             <?php
-            $routelist = \App\Models\Routelist::where('show_menu', '=', 1)->where('is_active', '=', 1)->get();
-            ?>
+            @yield('header_title_set')
+            <?php $routelist = \App\Models\Routelist::where('show_menu', '=', 1)->where('is_active', '=', 1)->get(); ?>
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link" href="javascript:void(0)">
                     <i class="fas fa-bars"></i>&nbsp; Quick links
@@ -49,8 +48,8 @@
             </div>
         </div>
         
-
-        @yield('header_button_set')
+        
+        @yield('header_button_set')        
 
         <?php
         $rm = new \Tritiyo\Task\Helpers\SiteHeadTotal('requisition_edited_by_accountant', 1);

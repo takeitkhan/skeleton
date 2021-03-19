@@ -6,45 +6,41 @@ use App\Models\User;
 
 class UserEloquent implements UserInterface
 {
-    private $model;
+        private $model;
 
-    /**
-     * UserEloquent constructor.
-     * @param User $model
-     */
-    public function __construct(User $model)
-    {
-        $this->model = $model;
-    }
+        /**
+         * UserEloquent constructor.
+         * @param User $model
+         */
+        public function __construct(User $model)
+        {
+            $this->model = $model;
+        }
 
-    /**
-     *
-     */
-    public function getAll()
-    {
-        return $this->model
-            ->orderBy('id', 'desc')
-            //->take(100)
-            ->paginate(24);
-    }
-
-    /**
-     * @param array $options
-     * @param false $totalrowcount
-     * @return mixed
-     */
-    public function getDataByFilter(array $options = [], $totalrowcount = false)
-    {
+        /**
+         *
+         */
+        public function getAll()
+        {
+            return $this->model
+                ->orderBy('id', 'desc')
+                //->take(100)
+                ->paginate(24);
+        }
+        /**
+         * @param array $options
+         * @param false $totalrowcount
+         * @return mixed
+         */
+        public function getDataByFilter(array $options = [], $totalrowcount = false)
+        {
 
         $default = [
             'search_key' => null,
-            'column' => !empty($field) ? $field : null,
-            'sort_type' => !empty($type) ? $type : null,
             'limit' => 10,
             'offset' => 0
         ];
-
-        $no = array_merge($default, $options);
+        $no = array_merge($default, $options);         
 
         if (!empty($no['limit'])) {
             $limit = $no['limit'];
@@ -64,43 +60,24 @@ class UserEloquent implements UserInterface
             $orderBy = 'id desc';
         }
 
-        if (!empty($no['search_key']) && $no['search_key'] != 'undefined') {
-            if ($totalrowcount == true) {
-                $data = $this->model
-                    ->orWhere('name', 'like', "%{$no['search_key']}%")
-                    ->paginate($limit)
-                    ->count();
-            } else {
-                $data = $this->model
-                    ->orWhere('name', 'like', "%{$no['search_key']}%")
-                    //->toSql();
-                    ->paginate($limit);
-            }
+        if (!empty($no['search_key'])) {
+            $users = $this->model
+            ->leftjoin('roles', 'roles.id', 'users.role')
+            ->select('users.*', 'roles.name AS role_name')
+            ->where('users.name', 'LIKE', '%'.$no['search_key'].'%')
+            ->orWhere('users.email', 'LIKE', '%'.$no['search_key'].'%')
+            ->orWhere('users.employee_no', 'LIKE', '%'.$no['search_key'].'%')
+            ->orWhere('users.username', 'LIKE', '%'.$no['search_key'].'%')
+            ->orWhere('roles.name', 'LIKE', '%'.$no['search_key'].'%')
+            ->paginate('48');
+
+            //dd($sites);
         } else {
-            if ($totalrowcount == true) {
-                $data = $this->model
-                    ->whereRaw('parent_id IS NULL')
-                    //->whereRaw('FIND_IN_SET(' . implode(',', $categories) . ', categories)')
-                    //->whereRaw($price_btw)
-                    //->orderByRaw($orderBy)
-                    ->get()->count();
-            } else {
-                $data = $this->model
-                    ->leftJoin('productcategories AS pc', function ($join) {
-                        $join->on('products.id', '=', 'pc.main_pid');
-                    })
-                    //->whereIn('pc.term_id', $no['category'])
-                    //->whereRaw('parent_id IS NULL')
-                    //->whereRaw($price_btw)
-                    //->orderByRaw($orderBy)
-                    //->offset($offset)->limit($limit)
-                    //->toSql();
-                    //->select(['products.*', 'pc.*', 'products.id AS proid'])
-                    //->orderBy('products.id', 'desc')
-                    ->paginate(5);
-            }
+            $users = [];
         }
-        return $data;
+
+        //dd($sites);
+        return $users;
     }
 
     /**

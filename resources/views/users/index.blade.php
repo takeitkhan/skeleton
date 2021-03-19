@@ -15,6 +15,7 @@
         @include('component.button_set', [
             'spShowButtonSet' => true,
             'spAddUrl' => null,
+            'spTitle' => 'Users',
             'spAddUrl' => route('users.create'),
             'spAllData' => route('users.index'),
             'spSearchData' => route('users.search'),
@@ -23,6 +24,9 @@
 
         @include('component.filter_set', [
             'spShowFilterSet' => true,
+            'spAddUrl' => route('users.create'),
+            'spAllData' => route('users.index'),
+            'spSearchData' => route('users.search'),
             'spPlaceholder' => 'Search user...',
             'spMessage' => $message = $message ?? NULl,
             'spStatus' => $status = $status ?? NULL

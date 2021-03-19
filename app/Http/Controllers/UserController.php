@@ -159,12 +159,16 @@ class UserController extends Controller
 
     public function search(Request $request)
     {
-        $default = [
-            'search_key' => $request->key ?? 'Samrat',
+        if(!empty($request->key)) {
+            $default = [
+            'search_key' => $request->key ?? '',
             'limit' => 10,
             'offset' => 0
-        ];
-        $users = $this->user->getDataByFilter($default);
+            ];        
+            $users = $this->user->getDataByFilter($default);            
+        } else {
+            $users = $this->user->getAll();        
+        }
         return view('users.index', ['users' => $users]);
     }
 
@@ -412,5 +416,8 @@ class UserController extends Controller
         }        
         }
     }
+
+
+    
 
 }

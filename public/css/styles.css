@@ -23,19 +23,32 @@ body.has-navbar-fixed-top, html.has-navbar-fixed-top {
 }
 
 .column {
-    padding: .40rem .35rem 0.35rem 0.35rem;
+    padding: .30rem .35rem 0.35rem 0.35rem;
 }
 
 nav.level {
-    align-items: unset !important;
-    padding-top: 10px;
+    align-items: unset;
+}
+section.hero.is-white.borderBtmLight > nav.level {
+    margin-top: 1px;
+}
+
+section.hero.is-white.borderBtmLight > nav.level > div > div.level-left {
+    width: 40% !important;
 }
 
 .level > div:last-child a.button.is-small.is-fullwidth {
     margin-bottom: 5px;
     font-size: .60rem;
 }
-
+.level-item {
+    align-items: center;
+    display: flex;
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    justify-content: left;
+}
 .borderedCol div.level > .level-left {
     max-width: 50%;
     margin-right: 5px;

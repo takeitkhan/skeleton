@@ -32,6 +32,9 @@
 
         @include('component.filter_set', [
             'spShowFilterSet' => true,
+            'spAddUrl' => route('tasks.create'),
+            'spAllData' => route('tasks.index'),
+            'spSearchData' => route('tasks.search'),
             'spPlaceholder' => 'Search tasks...',
             'spMessage' => $message = $message ?? NULl,
             'spStatus' => $status = $status ?? NULL
@@ -58,16 +61,15 @@ function userAccess($arg)
 
                 @foreach($tasks->where('task_assigned_to_head', 'Yes') as $task)
                     @php
-                        $proof_check = \Tritiyo\Task\Models\TaskStatus::where('code', 'proof_given')->where('task_id', $task->id)->first();
-                        $checkRequisitionApprovedByCFO = \Tritiyo\Task\Models\TaskRequisitionBill::where('task_id', $task->id)->first();
+                        $proof_check = \Tritiyo\Task\Models\TaskStatus::where('code', 'proof_given')->where('task_id', $task->id)->first(); 
+                        $checkRequisitionApprovedByCFO = \Tritiyo\Task\Models\TaskRequisitionBill::where('task_id', $task->id)->first();                       
                     @endphp
                     @if($proof_check != null && $proof_check->code)
-                        @if(!empty($checkRequisitionApprovedByCFO) && $checkRequisitionApprovedByCFO->requisition_approved_by_cfo == Null)
+                        @if(empty($checkRequisitionApprovedByCFO) || (!empty($checkRequisitionApprovedByCFO) && $checkRequisitionApprovedByCFO->requisition_approved_by_cfo == NULL))
                             @include('task::tasklist.index_template')
                         @endif
                     @endif
                 @endforeach
-
 
             @elseif(auth()->user()->isManager(auth()->user()->id))
                 @foreach($tasks->where('user_id', auth()->user()->id) as $task)
@@ -108,6 +110,10 @@ function userAccess($arg)
                     {{$getAccountantTask->links('pagination::bootstrap-4')}}
                 </div>
                 {{--   End         --}}
+            @elseif(auth()->user()->isAdmin(auth()->user()->id))
+                @foreach($tasks as $task)
+                    @include('task::tasklist.index_template')
+                @endforeach
             @endif
         </div>
     @endif

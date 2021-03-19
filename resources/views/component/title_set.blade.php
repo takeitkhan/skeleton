@@ -3,22 +3,20 @@
 ob_start();?>
 
 @if(!empty($spShowTitleSet) && $spShowTitleSet == true)
-    <div class="level-left">
-        <div class="level-item is-5">
-            <div>
-                <h3><strong>{{ $spTitle }}</strong> |  {{ ucfirst($spSubTitle) }}</h3>
-               
-            </div>
-            @if(!empty($spStatus) && $spStatus == 1)
-                <p class="has-text-success hideMessage">
-                    {{ !empty($spMessage) ? $spMessage : NULL }}
-                </p>
-            @else
-                <p class="has-text-danger hideMessage">
-                    {{ !empty($spMessage) ? $spMessage : NULL }}
-                </p>
-            @endif
+    <div class="level-item is-5">
+        <div>
+            <h3><strong>{{ $spTitle }}</strong> |  {{ ucfirst($spSubTitle) }}</h3>
+            
         </div>
+        @if(!empty($spStatus) && $spStatus == 1)
+            <p class="has-text-success hideMessage">
+                {{ !empty($spMessage) ? $spMessage : NULL }}
+            </p>
+        @else
+            <p class="has-text-danger hideMessage">
+                {{ !empty($spMessage) ? $spMessage : NULL }}
+            </p>
+        @endif
     </div>
 @endif
 
@@ -46,7 +44,7 @@ ob_start();?>
 
 
 
-<div class="">
+<div class="column is-5">
     <?php echo titleSet($spShowTitleSet ?? null, $spTitle ?? null, $spSubTitle ?? null, $spStatus ?? null, $spMessage ?? null);?>
 </div>
 

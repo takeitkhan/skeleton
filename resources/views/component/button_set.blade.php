@@ -2,14 +2,8 @@
 function buttonSet($spShowButtonSet = null, $spAddUrl = null, $spAllData = null, $spTitle = null, $spExportCSV = null){ 
     ob_start();?>
     @if(!empty($spShowButtonSet) && $spShowButtonSet == true)
-        <div class="level mb-0">
+        <div class="column is-4">
             <div class="level-item is-4">
-                @if($spAddUrl != '#')
-                    <a href="{{ $spAddUrl ?? NULL }}" class="button is-small is-info-light is-rounded" aria-haspopup="true"
-                    aria-controls="dropdown-menu">
-                        <span><i class="fas fa-plus"></i> Add</span>
-                    </a>
-                @endif
                 @if(!empty($spAllData))
                     <a href="{{ $spAllData  ?? NULL }}?route_id={{ Request::get('route_id') }}"
                     class="button is-small is-info-light is-rounded"
@@ -18,6 +12,12 @@ function buttonSet($spShowButtonSet = null, $spAddUrl = null, $spAllData = null,
                         <span><i class="fas fa-database"></i> {{ $spTitle ?? 'All Datas' }}</span>
                     </a>
                 @endif
+                @if($spAddUrl != '#')
+                    <a href="{{ $spAddUrl ?? NULL }}" class="button is-small is-info-light is-rounded" aria-haspopup="true"
+                    aria-controls="dropdown-menu">
+                        <span><i class="fas fa-plus"></i> Add</span>
+                    </a>
+                @endif               
 
                 @if(!empty($spExportCSV))
                     <div class="dropdown">
@@ -59,7 +59,7 @@ return $content;
 
 @endsection 
 
-<div class="xis-hidden-desktop">
+<div class="column is-3">
     <?php echo buttonSet($spShowButtonSet ?? null, $spAddUrl ?? null, $spAllData ?? null, $spTitle ?? null, $spExportCSV ?? null);?>
 </div>
 
