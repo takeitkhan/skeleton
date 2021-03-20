@@ -53,45 +53,57 @@
                         <a href="{{ url('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     </div>
                 </div>
-                <div class="columns is-multiline">
-                    <?php
-                    //dd(Auth::user()->role);
-                    $routelist = \App\Models\Routelist::where('show_menu', '=', 1)
-                        ->where('is_active', '=', 1)
-                        ->get();
-                    //dd($routelist);
-                    ?>
-                    @foreach($routelist as $menu)
-                        @php
-                            $selected = explode(",", $menu->to_role);
-                        @endphp
-
-                        @if(!empty(Auth::user()->role))
-                            @if(in_array(Auth::user()->role, $selected) && $menu->dashboard_menu == 1)
-                                <div class="column is-2">
-                                    <div class="isCentered">
-                                        @if (!empty($menu->route_url))
-                                            @if($menu->route_url == '#' || $menu->route_url == NULL)
-                                                <?php $link = '#'; ?>
-                                            @else
-                                                <?php
-                                                $link = route($menu->route_url) . '?route_id=' . $menu->id;
-                                                ?>
-                                            @endif
-                                        @endif
-                                        <a href="{{ $link ?? NULL }}"
-                                           class="button {{ $menu->bulma_class_icon_bg }} is-large is-accent">
-                                            <span><i class="{{ $menu->font_awesome }}"></i></span>
-                                        </a>
-                                        <div class="o_caption">{{ $menu->route_name }}</div>
-                                    </div>
+                @if(auth()->user()->employee_status == 'On Hold')
+                    <div class="columns is-multiline">
+                        <div class="column is-12">
+                            <div class="isCentered">
+                                <div class="notification is-warning" style="margin-left: 25px;">                                
+                                    <h1 class="subtitle">Your account on hold. Ask administrator or human resource manager for help.</h1>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    <div class="columns is-multiline">
+                        <?php
+                        //dd(Auth::user()->role);
+                        $routelist = \App\Models\Routelist::where('show_menu', '=', 1)
+                            ->where('is_active', '=', 1)
+                            ->get();
+                        //dd($routelist);
+                        ?>
+                        @foreach($routelist as $menu)
+                            @php
+                                $selected = explode(",", $menu->to_role);
+                            @endphp
+
+                            @if(!empty(Auth::user()->role))
+                                @if(in_array(Auth::user()->role, $selected) && $menu->dashboard_menu == 1)
+                                    <div class="column is-2">
+                                        <div class="isCentered">
+                                            @if (!empty($menu->route_url))
+                                                @if($menu->route_url == '#' || $menu->route_url == NULL)
+                                                    <?php $link = '#'; ?>
+                                                @else
+                                                    <?php
+                                                    $link = route($menu->route_url) . '?route_id=' . $menu->id;
+                                                    ?>
+                                                @endif
+                                            @endif
+                                            <a href="{{ $link ?? NULL }}"
+                                            class="button {{ $menu->bulma_class_icon_bg }} is-large is-accent">
+                                                <span><i class="{{ $menu->font_awesome }}"></i></span>
+                                            </a>
+                                            <div class="o_caption">{{ $menu->route_name }}</div>
+                                        </div>
+                                    </div>
+                                @endif
                             @endif
-                        @endif
 
 
-                    @endforeach
-                </div>
+                        @endforeach
+                    </div>
+                @endif
             </div>
             <div class="column is-2"></div>
         </div>

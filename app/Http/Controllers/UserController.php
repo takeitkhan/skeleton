@@ -237,6 +237,19 @@ class UserController extends Controller
     {
         if (isset($request->contact_info)) {
             //dd($request);
+
+            if($request->employee_status == 'Enroll') {
+                $status_reason = 'Enroll';
+            } else if($request->employee_status == 'Terminated') {
+                $status_reason = 'Terminated';
+            } else if($request->employee_status == 'Long Leave') {
+                $status_reason = 'Long Leave';
+            } else if($request->employee_status == 'Left Job') {
+                $status_reason = 'Left Job';
+            } else if($request->employee_status == 'On Hold') {
+                $status_reason = 'On Hold';
+            }
+            
             $attributes = [
                 'father' => $request->father,
                 'mother' => $request->mother,
@@ -251,7 +264,8 @@ class UserController extends Controller
                 'company_address' => $request->company_address,
                 'basic_salary' => $request->basic_salary,
                 'join_date' => $request->join_date,
-                'employee_status' => $request->employee_status
+                'employee_status' => $request->employee_status,
+                'employee_status_reason' => $status_reason ?? $request->employee_status_reason
             ];
 
             $userupdate = $this->user->update($id, $attributes);

@@ -18,6 +18,7 @@
     <script type="text/javascript"> var baseurl = "<?php echo url('/'); ?>";</script>
 </head>
 <body class="o_web_client o_home_menu_background">
+    @include('layouts.notification')
 <section class="hero is-fullheight">
     <div class="hero-body">
         <div class="container">

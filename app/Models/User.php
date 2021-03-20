@@ -19,7 +19,7 @@ class User extends Authenticatable
     protected $fillable = [
         'id', 'name', 'email', 'employee_no', 'username', 'role', 'birthday', 'gender', 'marital_status', 'father', 'mother', 'address',
         'district', 'postcode', 'phone', 'emergency_phone', 'company', 'designation', 'join_date', 'company_address', 'basic_salary', 'avatar',
-        'signature', 'bank_information', 'mbanking_information', 'alternative_email', 'employee_status', 'is_active', 'email_verified_at',
+        'signature', 'bank_information', 'mbanking_information', 'alternative_email', 'employee_status', 'employee_status_reason', 'is_active', 'email_verified_at',
         'password', 'two_factor_secret', 'two_factor_recovery_codes', 'remember_token', 'current_team_id', 'profile_photo_path', 'created_at', 'updated_at'
     ];
 

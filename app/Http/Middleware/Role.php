@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Role
 {
@@ -16,8 +17,8 @@ class Role
      */
     public function handle(Request $request, Closure $next, ...$roles)
     {
+        
         $user = $request->user();
-
         if ($user != null) {
             if ($user->isAdmin($request->user()->id))
                 return $next($request);
@@ -28,7 +29,7 @@ class Role
                     return $next($request);
                 }
             }
-            return redirect('oops');
+            return redirect('oops');            
         } else {
             return redirect(route('login'));
         }

@@ -56,33 +56,34 @@
         ?>
         
         <div class="navbar-end">
-            
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">Transaction Summary</a>
-                <div class="navbar-dropdown has-text-black">
-                    <div class="transaction_summary">
-                        <table class="table is-bordered">
-                            <tr>
-                                <td>Total Approved Requisition</td>
-                                <td>
-                                    @php
-                                        echo $rm->getTotal();
-                                        echo '<br/>';
-                                    @endphp
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Total Approved Bill</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Fraction</td>
-                                <td></td>
-                            </tr>
-                        </table>
+            <?php /*
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">Transaction Summary</a>
+                    <div class="navbar-dropdown has-text-black">
+                        <div class="transaction_summary">
+                            <table class="table is-bordered">
+                                <tr>
+                                    <td>Total Approved Requisition</td>
+                                    <td>
+                                        @php
+                                            echo $rm->getTotal();
+                                            echo '<br/>';
+                                        @endphp
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Total Approved Bill</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Fraction</td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
+            */ ?>
             <div class="navbar-item has-dropdown is-hoverable">
                 <?php $current_user = auth()->user(); //dump($current_user)?>
                 <a class="navbar-link">

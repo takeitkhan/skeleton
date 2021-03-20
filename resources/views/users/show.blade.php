@@ -105,6 +105,16 @@
                     <div class="column is-1">:</div>
                     <div class="column">{{ $user->basic_salary }}</div>
                 </div>
+                <div class="columns">
+                    <div class="column is-2">Employee Status</div>
+                    <div class="column is-1">:</div>
+                    <div class="column">{{ $user->employee_status ?? NULL }}</div>
+                </div>
+                <div class="columns">
+                    <div class="column is-2">Employee Status Note</div>
+                    <div class="column is-1">:</div>
+                    <div class="column">{{ $user->employee_status_reason ?? NULL }}</div>
+                </div>
             </div>
         </div>
     </div>
@@ -191,11 +201,6 @@
                     <div class="column is-2">Email (Alternative)</div>
                     <div class="column is-1">:</div>
                     <div class="column">{{ $user->alternative_email }}</div>
-                </div>
-                <div class="columns">
-                    <div class="column is-2">Employee Status</div>
-                    <div class="column is-1">:</div>
-                    <div class="column">{{ $user->employee_status }}</div>
                 </div>
                 <div class="columns">
                     <div class="column is-2">Is Active</div>

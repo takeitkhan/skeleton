@@ -29,7 +29,7 @@
     </nav>
 </section>
 @section('column_left')
-    <article class="panel is-primary">
+    <article class="panel is-primary">        
         <p class="panel-tabs">
             <a href="{{ route('users.basic_info', $id) }}">Basic Information</a>
             <a href="{{ route('users.contact_info', $id) }}" class="is-active">Other Information</a>
@@ -129,8 +129,9 @@
                         {{Form::label('employee_status','Employee Status',['class' => 'label'])}}
                         <div class="control">
                             <div class="select">
-                                <?php $emp_status = ['' => 'Select status', 'Enroll' => 'Enroll', 'Terminated' => 'Terminated', 'Long Leave' => 'Long Leave', 'Left Job' => 'Left Job']; ?>
-                                {{ Form::select('employee_status', $emp_status ?? NULL, $user->employee_status, ['class' => 'input', 'required' => true]) }}
+                                <?php $emp_status = ['' => 'Select status', 'Enroll' => 'Enroll', 'Terminated' => 'Terminated', 'Long Leave' => 'Long Leave', 'Left Job' => 'Left Job', 'On Hold']; ?>
+                                {{ Form::select('employee_status', $emp_status ?? NULL, $user->employee_status, ['class' => 'input', 'required' => true]) }}                                
+                                <input type="hidden" value="{{ $user->employee_status_reason ?? NULL }}" name="employee_status_reason" />
                             </div>
                         </div>
                     </div>

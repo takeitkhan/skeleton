@@ -44,7 +44,8 @@ class CreateUsersTable extends Migration
             $table->text('bank_information')->nullable();
             $table->text('mbanking_information')->nullable();
             $table->string('alternative_email')->nullable();
-            $table->enum('employee_status', ['Enroll', 'Terminated', 'Long Leave', 'Left Job'])->nullable();
+            $table->enum('employee_status', ['Enroll', 'Terminated', 'Long Leave', 'Left Job', 'On Hold'])->nullable();
+            $table->string('employee_status_reason')->nullable();
 
             // Common Activity
             $table->integer('is_active')->default(0);

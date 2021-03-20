@@ -1,6 +1,6 @@
 @if(!empty($spShowFilterSet) && $spShowFilterSet == true)
-    <div class="column is-4">
-        <div style="display: inline-block; float: right; margin-top: 6px;">
+    <div class="column is-2">
+        <div style="display: inline-block; float: right; margin-top: 0px;">
             <div class="level-rights">
                 <div class="control">
                     

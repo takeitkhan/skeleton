@@ -2,40 +2,38 @@
 function buttonSet($spShowButtonSet = null, $spAddUrl = null, $spAllData = null, $spTitle = null, $spExportCSV = null){ 
     ob_start();?>
     @if(!empty($spShowButtonSet) && $spShowButtonSet == true)
-        <div class="column is-4">
-            <div class="level-item is-4">
-                @if(!empty($spAllData))
-                    <a href="{{ $spAllData  ?? NULL }}?route_id={{ Request::get('route_id') }}"
-                    class="button is-small is-info-light is-rounded"
-                    aria-haspopup="true"
-                    aria-controls="dropdown-menu3">
-                        <span><i class="fas fa-database"></i> {{ $spTitle ?? 'All Datas' }}</span>
-                    </a>
-                @endif
-                @if($spAddUrl != '#')
-                    <a href="{{ $spAddUrl ?? NULL }}" class="button is-small is-info-light is-rounded" aria-haspopup="true"
-                    aria-controls="dropdown-menu">
-                        <span><i class="fas fa-plus"></i> Add</span>
-                    </a>
-                @endif               
+        <div class="level-item is-4">
+            @if(!empty($spAllData))
+                <a href="{{ $spAllData  ?? NULL }}?route_id={{ Request::get('route_id') }}"
+                class="button is-small is-info-light is-rounded"
+                aria-haspopup="true"
+                aria-controls="dropdown-menu3">
+                    <span><i class="fas fa-database"></i> {{ $spTitle ?? 'All Datas' }}</span>
+                </a>
+            @endif
+            @if($spAddUrl != '#')
+                <a href="{{ $spAddUrl ?? NULL }}" class="button is-small is-info-light is-rounded" aria-haspopup="true"
+                aria-controls="dropdown-menu">
+                    <span><i class="fas fa-plus"></i> Add</span>
+                </a>
+            @endif               
 
-                @if(!empty($spExportCSV))
-                    <div class="dropdown">
-                        <div class="dropdown-trigger">
-                            <button class="button is-small is-info-light is-rounded" aria-haspopup="true" aria-controls="dropdown-menu3">
-                                <span><i class="fas fa-tasks"></i> Action</span>
-                            </button>
-                        </div>
-                        <div class="dropdown-menu" id="dropdown-menu3" role="menu">
-                            <div class="dropdown-content">
-                                <a href="{{ $spExportCSV }}" class="dropdown-item">
-                                    Export CSV
-                                </a>
-                            </div>
+            @if(!empty($spExportCSV))
+                <div class="dropdown">
+                    <div class="dropdown-trigger">
+                        <button class="button is-small is-info-light is-rounded" aria-haspopup="true" aria-controls="dropdown-menu3">
+                            <span><i class="fas fa-tasks"></i> Action</span>
+                        </button>
+                    </div>
+                    <div class="dropdown-menu" id="dropdown-menu3" role="menu">
+                        <div class="dropdown-content">
+                            <a href="{{ $spExportCSV }}" class="dropdown-item">
+                                Export CSV
+                            </a>
                         </div>
                     </div>
-                @endif
-            </div>
+                </div>
+            @endif
         </div>
     @endif
 
@@ -59,7 +57,7 @@ return $content;
 
 @endsection 
 
-<div class="column is-3">
+<div class="column is-4">
     <?php echo buttonSet($spShowButtonSet ?? null, $spAddUrl ?? null, $spAllData ?? null, $spTitle ?? null, $spExportCSV ?? null);?>
 </div>
 
