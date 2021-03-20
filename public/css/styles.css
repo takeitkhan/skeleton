@@ -185,7 +185,7 @@ section.hero.is-white.borderBtmLight > nav.level > div > div.level-left {
 .borderedCol {
     border: 1px solid #dddddd;
     padding: 10px;
-    background-color: #ffffff;    
+    background-color: #ffffff;
     width: 100%
 }
 
@@ -222,29 +222,29 @@ section.hero.is-white.borderBtmLight > nav.level > div > div.level-left {
 .sb-example-1 .search {
     width: 100%;
     position: relative;
-    display: flex;    
+    display: flex;
   }
-  
+
   .sb-example-1 .searchTerm {
         width: 100%;
         border: unset;
-        border-right: none;        
+        border-right: none;
         border-radius: 50px;
         outline: none;
         color: #9DBFAF;
         padding: 0 0 0 15px;
     }
-  
+
   .sb-example-1 .searchTerm:focus{
     color: #00B4CC;
   }
-  
+
   .sb-example-1 .searchButton {
         height: 30px;
         border: unset;
         background: unset;
         text-align: center;
-        color: #000;        
+        color: #000;
         cursor: pointer;
         padding: 0 10px 0 10px;
     }
@@ -646,7 +646,7 @@ code {
 #credits {
 	position:relative;
 	margin:25px auto 0px auto;
-	width:350px; 
+	width:350px;
 	font:0.7em verdana;
 	border-top:1px solid #000;
 	border-bottom:1px solid #000;
@@ -676,4 +676,9 @@ form.dateFilter{
 }
 form.dateFilter input{
     width: auto;
+}
+.page-link {
+    position: relative;
+    display: block;
+    padding: 2px 9px;
 }
