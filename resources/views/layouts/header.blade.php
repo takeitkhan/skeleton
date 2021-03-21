@@ -6,7 +6,7 @@
             </span>
             {{-- <i class="fas fa-home"></i> --}}
         </a>
-        
+
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
            data-target="navbarExampleTransparentExample">
@@ -16,7 +16,7 @@
         </a>
     </div>
     <div id="navbarExampleTransparentExample" class="navbar-menu">
-        
+
         <div class="navbar-start">
             @yield('header_title_set')
             <?php $routelist = \App\Models\Routelist::where('show_menu', '=', 1)->where('is_active', '=', 1)->get(); ?>
@@ -38,23 +38,27 @@
                                     <?php $link = route($menu->route_url) . '?route_id=' . $menu->id; ?>
                                 @endif
                                 <a href="{{ $link ?? NULL }}"
-                                class="navbar-item">
+                                   class="navbar-item">
                                     <i class="{{ $menu->font_awesome ?? NULL }}"></i>&nbsp; {{ $menu->route_name }}
                                 </a>
                             @endif
                         @endif
                     @endforeach
+                    <a href="{{ route('hidtory.user',  auth()->user()->id) }}"
+                       class="navbar-item">
+                        <i class="{{ $menu->font_awesome ?? NULL }}"></i>&nbsp; My Summary
+                    </a>
                 </div>
             </div>
         </div>
-        
-        
-        @yield('header_button_set')        
+
+
+        @yield('header_button_set')
 
         <?php
         $rm = new \Tritiyo\Task\Helpers\SiteHeadTotal('requisition_edited_by_accountant', 1);
         ?>
-        
+
         <div class="navbar-end">
             <?php /*
                 <div class="navbar-item has-dropdown is-hoverable">
