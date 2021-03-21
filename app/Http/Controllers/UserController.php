@@ -164,10 +164,10 @@ class UserController extends Controller
             'search_key' => $request->key ?? '',
             'limit' => 10,
             'offset' => 0
-            ];        
-            $users = $this->user->getDataByFilter($default);            
+            ];
+            $users = $this->user->getDataByFilter($default);
         } else {
-            $users = $this->user->getAll();        
+            $users = $this->user->getAll();
         }
         return view('users.index', ['users' => $users]);
     }
@@ -224,7 +224,7 @@ class UserController extends Controller
             $user = $this->user->getById($id);
             return view('users.basic_info', ['user' => $user, 'id' => $id]);
         }
-        
+
     }
 
     /**
@@ -249,7 +249,7 @@ class UserController extends Controller
             } else if($request->employee_status == 'On Hold') {
                 $status_reason = 'On Hold';
             }
-            
+
             $attributes = [
                 'father' => $request->father,
                 'mother' => $request->mother,
@@ -327,7 +327,7 @@ class UserController extends Controller
     public function user_permissions(Request $request, User $user, $id)
     {
         if (isset($request->user_permissions)) {
-            //dd($request->permission);
+            dd($request->permission);
 
             $batch_data = [];
             foreach ($request->permission as $key => $data) {
@@ -427,11 +427,11 @@ class UserController extends Controller
                 ->withErrors('Password did not match with confirm password')
                 ->withInput();
             }
-        }        
+        }
         }
     }
 
 
-    
+
 
 }
