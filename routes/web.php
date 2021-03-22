@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Mail\SendMail;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,17 +18,17 @@ Route::any('/', function () {
 });
 
 Route::get('dashboard', function () {
-if(auth()->check()){
-    if(auth()->user()->employee_status == 'Terminated') {        
-        Auth::logout();
-        setcookie('loggedIn', false, -1, '/');
-        setcookie('user', null, -1, '/');
-        return redirect('/login')->with('message', 'You are terminated');
+    if (auth()->check()) {
+        if (auth()->user()->employee_status == 'Terminated') {
+            Auth::logout();
+            setcookie('loggedIn', false, -1, '/');
+            setcookie('user', null, -1, '/');
+            return redirect('/login')->with('message', 'You are terminated');
+        }
+        return view('dashboard');
+    } else {
+        return redirect('/login');
     }
-    return view('dashboard');
-} else {
-    return redirect('/login');
-}
 
 });
 
@@ -57,13 +58,14 @@ Route::get('/clearallcache', function () {
             Files cached successfully! <br/>
             Configuration cache cleared! <br/>
             Configuration cached successfully! <br/>
-            <a href="'.url('/dashboard').'">Go Back</a>';
+            <a href="' . url('/dashboard') . '">Go Back</a>';
 });
 
 
-Route::get('/mailtest', function(){
-    $data = ['message' => 'This is a test!'];
+Route::get('/mailtest', function () {
+    $data = ['message' => 'Mobile Tele Solutions'];
 
-    Mail::to('iik64437@eoopy.com')->send(new SendMail($data));
+    Mail::to('info@tritiyo.com')->send(new SendMail($data));
+
     return 'ok';
 });

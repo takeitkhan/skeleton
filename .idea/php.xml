@@ -132,6 +132,9 @@
       <path value="$PROJECT_DIR$/vendor/tritiyo/vehicle" />
       <path value="$PROJECT_DIR$/vendor/tritiyo/material" />
       <path value="$PROJECT_DIR$/vendor/tritiyo/task" />
+      <path value="$PROJECT_DIR$/vendor/sendgrid/php-http-client" />
+      <path value="$PROJECT_DIR$/vendor/sendgrid/sendgrid" />
+      <path value="$PROJECT_DIR$/vendor/starkbank/ecdsa" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3">
