@@ -21,6 +21,35 @@
     @yield('headjs')
 </head>
 <body>
+
+@php
+    //task Site Complete or running Status
+    /**
+    * if any data get in task_site_complete table based on  Manager User id
+    *
+    */
+    $todayDate = date('Y-m-d');
+    $last2DaysDate = date('Y-m-d', strtotime($todayDate. ' - 2 days'));
+    $siteComeplteStatusCheck = Tritiyo\Site\Models\TaskSiteComplete::where('user_id', auth()->user()->id)->whereDate('created_at', date('Y-m-d'))->get();
+    $getTask = Tritiyo\Task\Models\Task::where('user_id', auth()->user()->id)->where('tasks.task_for', '<', $last2DaysDate)->first();
+
+    //dd($getTask);
+    if(auth()->user()->isManager(auth()->user()->id)){
+        if($getTask == null){
+
+        } else {
+            if(count($siteComeplteStatusCheck) > 0){
+
+            }else{
+                echo Redirect::to('/site/updated-status');
+            }
+        }
+    }
+
+
+@endphp
+
+
 @include('layouts.header')
 
 <div class="columns">
@@ -55,7 +84,6 @@
         color: #F1F1F1;
     }
 </style>
-
 @yield('cusjs')
 </body>
 </html>

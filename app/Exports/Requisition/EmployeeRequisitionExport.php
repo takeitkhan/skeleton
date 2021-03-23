@@ -6,8 +6,12 @@ use App\Models\EmployeeRequisition;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use \Tritiyo\Task\Models\Task;
+use Tritiyo\Task\Models\TaskRequisitionBill;
+use Tritiyo\Task\Models\TaskSite;
 
-class EmployeeRequisitionExport implements FromCollection, WithHeadings
+class EmployeeRequisitionExport implements FromCollection, WithHeadings, ShouldAutoSize
 {
     private $date;
 
@@ -25,41 +29,74 @@ class EmployeeRequisitionExport implements FromCollection, WithHeadings
      */
     public function collection()
     {
-        return EmployeeRequisition::selectRaw(
-            'id,
-            requested_by,
-            (SELECT name FROM users WHERE id = requested_by LIMIT 0,1) AS employee_name,
-            (SELECT mbanking_information FROM users WHERE id = requested_by LIMIT 0,1) AS mbanking_info,
-            accountant_edited_total_amount,
-            (SELECT sum(accountant_edited_amount) FROM employee_requisition_breakdowns WHERE breakdown_random_code = requsition_random_code) AS breakdown_total,
-            ((SELECT sum(accountant_edited_amount) FROM employee_requisition_breakdowns WHERE breakdown_random_code = requsition_random_code) + accountant_edited_total_amount) AS accountant_approved_total_amount,
-            (SELECT name FROM projects WHERE id = project_id LIMIT 0,1) AS project_name,
-            site_name,
-            project_manager,
-            project_manager_id,
-            requested_date,
-            accountant_approved_time'
-        )->where('accountant_approved', 1)
-            ->whereDate('accountant_approved_time', $this->date)
-            ->get();
+        $getData = \Tritiyo\Task\Models\TaskRequisitionBill::get()->toArray();
+        $v = [];
+        foreach ($getData as $data) {
+            $total = new \Tritiyo\Task\Helpers\SiteHeadTotal('requisition_edited_by_accountant', $data['task_id']);
+
+
+            $getTask = Task::where('id', $data['task_id'])->first();
+            $getTaskSite = TaskSite::leftjoin('sites', 'sites.id', 'tasks_site.site_id')
+                ->select('tasks_site.site_id', 'sites.site_code', 'sites.location')
+                ->where('tasks_site.task_id', $data['task_id'])->groupBy('tasks_site.site_id')->get()->toArray();
+
+            $getResource = TaskSite::leftjoin('users', 'users.id', 'tasks_site.resource_id')
+                ->select('tasks_site.resource_id', 'users.name')
+                ->where('tasks_site.task_id', $data['task_id'])->groupBy('tasks_site.resource_id')->get()->toArray();
+
+
+            $task_name = $getTask->task_name;
+            $task_for = $getTask->task_for;
+            $task_details = $getTask->task_details;
+            $siteCode = implode(',', array_column($getTaskSite, 'site_code'));
+            $location = implode(',', array_column($getTaskSite, 'location'));
+            $resource = implode(',', array_column($getResource, 'name'));
+            $project = \Tritiyo\Project\Models\Project::where('id', $getTask->project_id)->first()->code;
+            $siteHead = \App\Models\User::where('id', $getTask->site_head)->first()->name;
+
+            $value = [];
+            $v[] = [
+                $value[] = $task_name,
+                $value[] = $task_for,
+                $value[] = $task_details,
+                $value[] = $project,
+                $value[] = $siteCode,
+                $value[] = $location,
+                $value[] = $siteHead,
+                $value[] = $resource,
+
+                $value[] = $total->getVehicleTotal(),
+                $value[] = $total->getMaterialTotal(),
+                $value[] = $total->getRegularTotal(),
+                $value[] = $total->getTransportTotal(),
+                $value[] = $total->getPurchaseTotal(),
+                $value[] = $total->getTotal(),
+            ];
+
+        }
+
+        if (count($v) == count($getData)) {
+            return collect([$v]);
+        }
     }
 
     public function headings(): array
     {
         return [
-            'Req ID',
-            'Req By',
-            'Employee Name',
-            'Mob Banking',
-            'Acc Approved Amount',
-            'Acc Approved Breakdown Amount',
-            'Acc Approved Total Amount',
-            'Prj Name',
-            'Site Name',
-            'Prj Manager',
-            'Manager ID',
-            'Req Date',
-            'App Time'
+            'Task Name',
+            'Task For',
+            'Description',
+            'Project Code',
+            'Site Code',
+            'Site Location',
+            'Site Head',
+            'Resources',
+            'Vehicle Rent',
+            'Material Cost',
+            'Regular Amount (DA, Labour, Other)',
+            'Transport Total',
+            'Purchase Total',
+            'Total Amount'
         ];
     }
 }

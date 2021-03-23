@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Mail\SendMail;
 
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\Requisition\EmployeeRequisitionExport;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,7 +33,7 @@ Route::get('dashboard', function () {
         return redirect('/login');
     }
 
-});
+})->name('dashboard');
 
 Route::get('oops', function () {
     return view('oops');
@@ -69,3 +72,17 @@ Route::get('/mailtest', function () {
 
     return 'ok';
 });
+
+//Excel
+
+// Reports
+Route::get('download/excel/requisition', function() {
+
+
+    return Excel::download(new EmployeeRequisitionExport(date('Y-m-d')), 'approved_daily_requisition.xlsx');
+
+    return Excel::download(new BladeExport($data), 'export.xlsx');
+
+
+
+})->name('download_excel_requisition_bill');

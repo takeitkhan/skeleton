@@ -18,8 +18,11 @@
     <script type="text/javascript"> var baseurl = "<?php echo url('/'); ?>";</script>
 </head>
 <body class="o_web_client o_home_menu_background">
-    @include('layouts.notification')
+
+@include('layouts.notification')
+
 <section class="hero is-fullheight">
+    @yield('full_width_content')
     <div class="hero-body">
         <div class="container">
             @if (!empty($__env->yieldContent('dashboard')))

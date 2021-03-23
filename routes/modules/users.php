@@ -7,7 +7,7 @@ Route::any('/logout', [UserController::class, 'logout']);
 Route::get('/signout', [UserController::class, 'logout']);
 
 
-Route::group(['middleware' => 'role:1,7'], function () {
+Route::group(['middleware' => 'role:1,7,4'], function () {
     Route::any('users/search', [UserController::class, 'search'])->name('users.search');
     Route::any('users/basic_info/{id}', [UserController::class, 'basic_info'])->name('users.basic_info');
     Route::any('users/contact_info/{id}', [UserController::class, 'contact_info'])->name('users.contact_info');

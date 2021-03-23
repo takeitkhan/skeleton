@@ -12,19 +12,22 @@ class SendMail extends Mailable
     use Queueable, SerializesModels;
 
     public $data;
+    public $subject;
 
-    public function __construct($data)
+    public function __construct($data, $subject)
     {
         $this->data = $data;
+        $this->subject = $subject;
     }
 
     public function build()
     {
+        //dd($this->data[0]['site_id']);
         //dd($this->data['message']);
         $address = 'noushad.playstore@gmail.com';
-        $subject = 'This is a demo!';
-        $name = 'Jane Doe';
-        $messages = $this->data['message'];
+        $subject = $this->subject;
+        $name = 'System Mail';
+        $messages = $this->data;
         return $this->view('email', compact('messages'))
                     ->from($address, $name)
                     ->cc($address, $name)

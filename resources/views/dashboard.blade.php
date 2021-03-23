@@ -4,7 +4,6 @@
 @section('sub_title', 'all parent menu here')
 
 @section('dashboard')
-
     <div class="dashboard_bg">
 
     </div>
@@ -57,7 +56,7 @@
                     <div class="columns is-multiline">
                         <div class="column is-12">
                             <div class="isCentered">
-                                <div class="notification is-warning" style="margin-left: 25px;">                                
+                                <div class="notification is-warning" style="margin-left: 25px;">
                                     <h1 class="subtitle">Your account on hold. Ask administrator or human resource manager for help.</h1>
                                 </div>
                             </div>
