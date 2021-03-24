@@ -49,7 +49,7 @@
                         <i class="{{ $menu->font_awesome ?? NULL }}"></i>&nbsp; My Summary
                     </a>
                     @if(auth()->user()->isManager(auth()->user()->id))
-                        <a href="{{ route('hidtory.user',  auth()->user()->id) }}"
+                        <a href="{{ route('live.resource.usage') }}"
                            class="navbar-item">
                             <i class="fas fa-stream"></i>  Live resource Usage
                         </a>
