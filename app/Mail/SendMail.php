@@ -24,14 +24,14 @@ class SendMail extends Mailable
     {
         //dd($this->data[0]['site_id']);
         //dd($this->data['message']);
-        $address = 'noushad.playstore@gmail.com';
+        $address = 'info@mtsbd.net';
         $subject = $this->subject;
-        $name = 'System Mail';
+        $name = 'MTS App';
         $messages = $this->data;
         return $this->view('email', compact('messages'))
                     ->from($address, $name)
-                    ->cc($address, $name)
-                    ->replyTo($address, $name)
+                    //->cc($address, $name)
+                    //->replyTo($address, $name)
                     ->subject($subject);
     }
 }

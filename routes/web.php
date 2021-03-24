@@ -5,6 +5,8 @@ use App\Mail\SendMail;
 
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\Requisition\EmployeeRequisitionExport;
+use App\Exports\ProjectReport;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,14 +77,72 @@ Route::get('/mailtest', function () {
 
 //Excel
 
+
+
+
 // Reports
-Route::get('download/excel/requisition', function() {
+Route::post('download/excel/requisition-accountant', function (Request $request) {
+
+    $date = $request->daterange;
+
+    return Excel::download(new EmployeeRequisitionExport($date), $date.'requisition_for_accountant.xlsx');
+    //return redirect()->back()->with('data', 'date');
+
+//    return Excel::download(new BladeExport($data), 'export.xlsx');
 
 
-    return Excel::download(new EmployeeRequisitionExport(date('Y-m-d')), 'approved_daily_requisition.xlsx');
+})->name('download_excel_requisition_accountant');
 
-    return Excel::download(new BladeExport($data), 'export.xlsx');
+/**
+ * Exel Route
+ */
+
+
+Route::get('/download/excel/project', function () {
+    $id = request()->get('id');
+    $date = request()->get('daterange');
+    return Excel::download(new ProjectReport($id, $date), 'Project Report Export'.$date.'.xlsx');
+
+})->name('download_excel_project');
+
+
+Route::get('/download/excel/site', function () {
+    $id = request()->get('id');
+    $date = request()->get('daterange');
+    //dd($date);
+
+    return Excel::download(new App\Exports\SiteReport($id, $date), 'Site Report Export'.$date.'.xlsx');
+
+})->name('download_excel_site');
+
+
+Route::get('/download/excel/vehicle', function () {
+    $id = request()->get('id');
+    $date = request()->get('daterange');
+    //dd($date);
+
+    return Excel::download(new App\Exports\VehicleReport($id, $date), 'Vehicle Report Export'.$date.'.xlsx');
+
+})->name('download_excel_vehicle');
 
 
 
-})->name('download_excel_requisition_bill');
+Route::get('/download/excel/material', function () {
+    $id = request()->get('id');
+    $date = request()->get('daterange');
+    //dd($date);
+
+    return Excel::download(new App\Exports\MaterialReport($id, $date), 'Material Report Export'.$date.'.xlsx');
+
+})->name('download_excel_material');
+
+
+
+Route::get('/download/excel/user', function () {
+    $id = request()->get('id');
+    $date = request()->get('daterange');
+    //dd($date);
+    $userName = \App\Models\User::where('id', $id)->first()->name;
+    return Excel::download(new App\Exports\UserReport($id, $date), $userName.' Report Export'.$date.'.xlsx');
+
+})->name('download_excel_user');

@@ -432,6 +432,9 @@ class UserController extends Controller
     }
 
 
-
+    public function download_excel_any(Request $request)
+    {
+        dd($request);
+    }
 
 }

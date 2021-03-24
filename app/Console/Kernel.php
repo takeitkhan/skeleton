@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Console\Commands\projectbudget75;
+use App\Console\Commands\projectsitecomplete;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -13,7 +15,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        projectbudget75::class,
+        projectsitecomplete::class,
     ];
 
     /**
@@ -25,6 +28,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+         $schedule->command('project:budget75')->daily();
+         $schedule->command('project:sitecomplete')->weekly();
     }
 
     /**

@@ -29,7 +29,13 @@ class EmployeeRequisitionExport implements FromCollection, WithHeadings, ShouldA
      */
     public function collection()
     {
-        $getData = \Tritiyo\Task\Models\TaskRequisitionBill::get()->toArray();
+        $dates = explode(' - ', $this->date);
+        $start = $dates[0];
+        $end = $dates[1];
+        $getData = \Tritiyo\Task\Models\TaskRequisitionBill::leftjoin('tasks', 'tasks.id', 'tasks_requisition_bill.task_id')
+                                            ->select('tasks_requisition_bill.*', 'tasks.task_for')
+                                            ->whereBetween('tasks.task_for', [$start, $end])
+                                            ->get()->toArray();
         $v = [];
         foreach ($getData as $data) {
             $total = new \Tritiyo\Task\Helpers\SiteHeadTotal('requisition_edited_by_accountant', $data['task_id']);

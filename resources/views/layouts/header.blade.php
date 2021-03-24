@@ -48,6 +48,19 @@
                        class="navbar-item">
                         <i class="{{ $menu->font_awesome ?? NULL }}"></i>&nbsp; My Summary
                     </a>
+                    @if(auth()->user()->isManager(auth()->user()->id))
+                        <a href="{{ route('hidtory.user',  auth()->user()->id) }}"
+                           class="navbar-item">
+                            <i class="fas fa-stream"></i>  Live resource Usage
+                        </a>
+                    @endif
+
+                    @if(auth()->user()->isAccountant(auth()->user()->id))
+                        <a href="{{ route('excel.requisition.report.accountant') }}"
+                           class="navbar-item">
+                            <i class="fas fa-stream"></i>  Requisition Report
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>

@@ -686,3 +686,11 @@ form.dateFilter input{
 /*.card-data {*/
 /*    overflow: auto;*/
 /*}*/
+
+@media only screen and (max-width: 720px) {
+    table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+}
