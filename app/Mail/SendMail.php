@@ -24,9 +24,9 @@ class SendMail extends Mailable
     {
         //dd($this->data[0]['site_id']);
         //dd($this->data['message']);
-        $address = 'info@mtsbd.net';
+        $address = 'noreply@mtsbd.net';
         $subject = $this->subject;
-        $name = 'MTS App';
+        $name = 'MTS App Notification';
         $messages = $this->data;
         return $this->view('email', compact('messages'))
                     ->from($address, $name)
